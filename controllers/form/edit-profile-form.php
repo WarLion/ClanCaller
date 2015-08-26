@@ -83,6 +83,7 @@
                             <label class="favattack-cc lalo"for="lalo"></label><br />
                             <?php }?>
                             </div>
+                            <div class="row"></div>
                             <div class="col-sm-4 col-md-4">
                             <?PHP if($rws['user_favattack'] == 'gowipe'){?>
                             <img src="imagenes/troops/attacks/gowipe.png" width="120" class="img-responsive"/>
