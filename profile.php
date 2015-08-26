@@ -125,10 +125,16 @@ $title_user = $row['user_title'];
                                         <div class="col-md-2">
                                         <img src="imagenes/th/<?php echo $userlog['score'];?>.png" width="80px" />  
                                         </div> 
+                                        
                                         <div class="col-md-2">
-                                        <img src="imagenes/troops/attacks/<?php echo $userlog['favattack'];?>.png" width="80px" />  
+                                        <?php if($userlog['favattack'] == ''){?>
+                                        <img src="imagenes/troops/attacks/none.png" width="80px" />  
+										<?php }else{?>                              
+                                        <img src="imagenes/troops/attacks/<?php echo $userlog['favattack'];?>.png" width="80px" />
+                                        <?php }?>                                           
                                         </div>                                         
-<?php }?>                                                            
+ 
+ <?php }?>                             
                                                                                   
                                         
                                     </div>
@@ -156,8 +162,12 @@ $title_user = $row['user_title'];
                                         <img src="imagenes/th/<?php echo $userlog3['score'];?>.png" width="80px" /> 
                                         </div> 
                                         <div class="col-md-2">
-                                        <img src="imagenes/troops/attacks/<?php echo $userlog3['favattack'];?>.png" width="80px" />  
-                                        </div>                                          
+                                        <?php if($userlog['favattack'] == ''){?>
+                                        <img src="imagenes/troops/attacks/none.png" width="80px" />  
+										<?php }else{?>                              
+                                        <img src="imagenes/troops/attacks/<?php echo $userlog['favattack'];?>.png" width="80px" />
+                                        <?php }?>                                           
+                                        </div>                                           
                                         
                                         
   <?Php
@@ -185,8 +195,12 @@ $title_user = $row['user_title'];
                                         <img src="imagenes/th/<?php echo $userlog3['score'];?>.png" width="80px" /> 
                                         </div> 
                                         <div class="col-md-2">
-                                        <img src="imagenes/troops/attacks/<?php echo $userlog3['favattack'];?>.png" width="80px" />  
-                                        </div>                                           
+                                        <?php if($userlog['favattack'] == ''){?>
+                                        <img src="imagenes/troops/attacks/none.png" width="80px" />  
+										<?php }else{?>                              
+                                        <img src="imagenes/troops/attacks/<?php echo $userlog['favattack'];?>.png" width="80px" />
+                                        <?php }?>                                           
+                                        </div>                                          
                                         
                                         
   <?Php
@@ -214,8 +228,12 @@ $title_user = $row['user_title'];
                                         <img src="imagenes/th/<?php echo $userlog3['score'];?>.png" width="80px" /> 
                                         </div> 
                                         <div class="col-md-2">
-                                        <img src="imagenes/troops/attacks/<?php echo $userlog3['favattack'];?>.png" width="80px" />  
-                                        </div>        
+                                        <?php if($userlog['favattack'] == ''){?>
+                                        <img src="imagenes/troops/attacks/none.png" width="80px" />  
+										<?php }else{?>                              
+                                        <img src="imagenes/troops/attacks/<?php echo $userlog['favattack'];?>.png" width="80px" />
+                                        <?php }?>                                           
+                                        </div>         
                                         
                                         
   <?Php
