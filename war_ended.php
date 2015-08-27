@@ -119,54 +119,16 @@ while($res = mysqli_fetch_array($result)){ ?>
                  	<div class="col-md-12" style="padding-bottom:10;">
             			<a href="<?php echo $score['plan'];?>"><img src="<?php echo $score['plan'];?>" height="95" class="img-thumbnail"/></a>
                     </div>
-                  </div> 
-                    <?php if ($score['favattack']){?>
-            	 <div class="row">
-                 	<div class="col-md-12">
-            			 <img src="imagenes/troops/attacks/<?php echo $score['favattack'];?>.png" width="120" />
-                    </div>
-                  </div>
-                  <?php }?>                 
+                  </div>                
             </div>
             	 
 			<div class="col-md-6"> 	
-            	<div class="form-group float-label-control">
-
-                   <input type="image" src="imagenes/th/0.png" width="120" />
-                   <input type="hidden" name="stars" value="0"/>
-                   <input type="hidden" name="war_enemy" value="<?php echo $rws['war_enemy'];?>"/>
-                   <input type="hidden" name="user_username" value="<?php echo $user_score;?>"/>
-                   <input type="hidden" name="enemy_enemynumber" value="<?php echo $i;?>"/>
-                   <input type="hidden" name="war_detail" value="<?php echo $current_war;?>"/>
-                   <input type="hidden" name="war_size" value="<?php echo $rws['war_size'];?>"/>                    
-
-                   <input type="image" src="imagenes/th/1.png" width="120" />
-                   <input type="hidden" name="stars" value="1"/>
-                   <input type="hidden" name="war_enemy" value="<?php echo $rws['war_enemy'];?>"/>
-                   <input type="hidden" name="user_username" value="<?php echo $user_score;?>"/>
-                   <input type="hidden" name="enemy_enemynumber" value="<?php echo $i;?>"/>
-                   <input type="hidden" name="war_detail" value="<?php echo $current_war;?>"/>
-                   <input type="hidden" name="war_size" value="<?php echo $rws['war_size'];?>"/>                   
-                  
-                
-                   <input type="image" src="imagenes/th/2.png" width="120" />
-                   <input type="hidden" name="stars" value="2"/>
-                   <input type="hidden" name="war_enemy" value="<?php echo $rws['war_enemy'];?>"/>
-                   <input type="hidden" name="user_username" value="<?php echo $user_score;?>"/>
-                   <input type="hidden" name="enemy_enemynumber" value="<?php echo $i;?>"/>
-                   <input type="hidden" name="war_detail" value="<?php echo $current_war;?>"/>
-                   <input type="hidden" name="war_size" value="<?php echo $rws['war_size'];?>"/>                   
-              
-                
-                   <input type="image" src="imagenes/th/3.png" width="120" />
-                   <input type="hidden" name="stars" value="3"/>
-                   <input type="hidden" name="war_enemy" value="<?php echo $rws['war_enemy'];?>"/>
-                   <input type="hidden" name="user_username" value="<?php echo $user_score;?>"/>
-                   <input type="hidden" name="enemy_enemynumber" value="<?php echo $i;?>"/>
-                   <input type="hidden" name="war_detail" value="<?php echo $current_war;?>"/>
-                   <input type="hidden" name="war_size" value="<?php echo $rws['war_size'];?>"/>                   
-                
-                </div>
+                     <?php if ($score['favattack']){?>
+                     <label for=""><?php echo $score['user_username'];?>`s attack Style</label>	
+                 	<div class="col-md-12">
+            			 <img src="imagenes/troops/attacks/<?php echo $score['favattack'];?>.png" width="120" />
+                    </div>
+                  <?php }?>  
         	</div>
           </div>
         </div>        

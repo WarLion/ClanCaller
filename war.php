@@ -15,6 +15,10 @@
 					$war_stars_total = $war_stars * 3;
 					$enemy_name = $rws['war_enemy'];
 					
+					$sql_call = "SELECT user_username1, user_username2, user_username3, user_username4, count(*) as 'calls' FROM caller WHERE war_enemy = '$enemy_name' && user_username1 = '$current_user' || user_username2 = '$current_user' || user_username3 = '$current_user' || user_username4 = '$current_user' ORDER BY caller_id";
+					$result_call = mysqli_query($database,$sql_call) or die(mysqli_error($database));
+					while($calls = mysqli_fetch_array($result_call)){ 
+						 
 					$sql_score = "SELECT SUM(score) FROM score WHERE war_enemy='$enemy_name'";
                     $result_score = mysqli_query($database,$sql_score) or die(mysqli_error($database));
                     while($score = mysqli_fetch_array($result_score)){ 
@@ -28,7 +32,7 @@
 <?php $sql = "SELECT SUM(max_score) FROM (SELECT war_enemy, MAX(score) AS max_score FROM score WHERE war_enemy ='$enemy_name' GROUP BY enemy_enemynumber) AS total";
 $result = mysqli_query($database,$sql) or die(mysqli_error($database));
 while($res = mysqli_fetch_array($result)){ ?>         
-        <span class="text-center profile-name" style="font-size:22;"><?php echo $res['SUM(max_score)'];?></span><br />
+        <span class="text-center profile-name" style="font-size:22;"><?php if($res['SUM(max_score)'] == ''){ echo '0';}else { echo $res['SUM(max_score)'];}?></span><br />
         </div>
         <div class="col-md-6 col-xs-6">
                 <div class="progress">
@@ -52,7 +56,7 @@ while($res = mysqli_fetch_array($result)){ ?>
     <div class="row">
 
 
-<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 text-center"><h1><?php echo $i; ?></h1></div>
+<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 text-center"><p class="user_title" style="font-size:18; text-align: center;">Enemy - <?php echo $i; ?></p></div>
     <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 text-center">
         <div style="position: relative; left: 0; top: 0;">
 <?php 
@@ -71,7 +75,24 @@ while($res = mysqli_fetch_array($result)){ ?>
             
             
             <?php if($caller_th['call_base'] !== 'noscreen.jpg'){?>
-    <a href="userfiles/screenshoots/<?php echo $caller_th['call_base'];?>"><img class="img-responsive  text-center" src="imagenes/map.png" width="50" style="position: absolute; top: 0px; left: 100px;"/></a>            
+    <a href="#map<?php echo $i;?>" data-toggle="modal"><img class="img-responsive  text-center" src="imagenes/map.png" width="50" style="position: absolute; top: 0px; left: 100px;"/></a>  
+       
+     <div class="modal fade bs-example-modal-lg" id="map<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img src="imagenes/close.png" width="20" height="20" /></button>
+        <p class="user_title" style="font-size:18; text-align: left;">Enemy - <?php echo $i; ?> - Base</p>
+      </div>
+      <div class="modal-body">
+        <img class="img-responsive" src="userfiles/screenshoots/<?php echo $caller_th['call_base'];?>"/></a> 
+      </div>
+      <div class="modal-footer" style="text-align:center;">
+      <a href="userfiles/screenshoots/<?php echo $caller_th['call_base'];?>" class="btn btn-primary">Full screen</a>
+      </div>
+    </div>
+  </div>
+</div>      
             <?php } }?>
 <?php  } ?>            
         </div>
@@ -86,13 +107,14 @@ while($res = mysqli_fetch_array($result)){ ?>
     <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 text-center">
 
         
-         <?php   if ($caller['user_username1'] == NULL){?>
+         <?php   if ($caller['user_username1'] == NULL){
+         			if ($calls['calls'] != 2){?>
                 <a href="firstcall.php?e=<?php echo $i;?>" class="btn btn-success">Call It First</a>
         
-            <?php }else{?>
+            <?php } }else{?>
                 <ul class="list-unstyled">
-                    <li><strong>Called by</strong></li>
-                    <li><h4><?php echo $caller['user_username1'];?></h4></li>
+                    <li><p class="user_title" style="text-align: center; font-size:11;">Called by</p></li>
+                    <li><p  class="user_title" style="text-align: center; font-size:18; color:#FFF;"><?php echo $caller['user_username1'];?></p></li>
          <?php    
 		 $user_score = $caller['user_username1'];       
          $sql_score = "SELECT * FROM score WHERE war_enemy = '$caller_enemy' && enemy_enemynumber = '$war_enemynumber' && user_username ='$user_score' LIMIT 1";
@@ -108,7 +130,7 @@ while($res = mysqli_fetch_array($result)){ ?>
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Stars <?php echo $rws['war_enemy'];?> <?php echo $i;?></h4>
+        <p class="modal-title user_title" style="text-align: center; font-size:18;"><?php echo $rws['war_enemy'];?> Enemy - <?php echo $i;?></p>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
@@ -230,7 +252,7 @@ while($res = mysqli_fetch_array($result)){ ?>
 </div>
 	<?php $i++;};?>                 
         
-  			<?php }?>
+  			<?php } }?>
                
 </div> 
 

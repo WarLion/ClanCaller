@@ -47,7 +47,7 @@ $title_user = $row['user_title'];
                         <div id="panel-element-info" class="panel-collapse collapse in">
                             <div class="panel-body">
                                 <div class="col-md-4 column">
-                                    <p class="text-center profile-title">Personal Information</p>
+                                    <p class="user_title" style="text-align: center; font-size:18;">Personal Information</p>
                                     <hr>
 
 
@@ -55,7 +55,7 @@ $title_user = $row['user_title'];
                                         <p class="profile-details"><i class="fa fa-user"></i> Name</p>
                                     </div>
                                     <div class="col-md-6">                                    
-                                        <p><?php echo $rws['user_firstname'];?></p>
+                                        <p class="profile-text profile-name" style="font-size:20;"><?php echo $rws['user_firstname'];?></p>
                                     </div>
 <?php
     if ($rws['user_email']){
@@ -70,7 +70,7 @@ $title_user = $row['user_title'];
 
                                 </div>
                                 <div class="col-md-8 column">
-                                    <p class="text-center profile-title">Game Information</p>
+                                    <p class="user_title" style="text-align: center; font-size:18;">Game Information</p>
                                     <hr>
                                     <div class="col-md-4">
                                         <p class="profile-details"><i class="fa fa-plus"></i> TownHall Lv</p>  
@@ -96,7 +96,7 @@ $title_user = $row['user_title'];
 
 						<div class="panel-body">
                                 <div class="col-md-6 column">
-                                    <p class="text-center profile-title">Your War log</p>
+                                    <p class="user_title" style="text-align: center; font-size:15;">Your War log</p>
                                     <hr>
 
 
@@ -115,7 +115,8 @@ $title_user = $row['user_title'];
                                         
                                         
   <?Php
-   $sql2 = "SELECT * FROM score WHERE user_username='$current_user' AND war_enemy = '$enemy_name1' ORDER BY score_id LIMIT 2";
+  $user_name = $rws['user_username'];
+   $sql2 = "SELECT * FROM score WHERE user_username='$user_name' AND war_enemy = '$enemy_name1' ORDER BY score_id LIMIT 2";
     $result2 = mysqli_query($database,$sql2) or die(mysqli_error($database));
     while($userlog = mysqli_fetch_array($result2,MYSQLI_BOTH)) {
   ?>                                       
@@ -154,7 +155,7 @@ $title_user = $row['user_title'];
                                      <p><?php echo $enemy_name;?>-Ended</p>
                                      </div>                                                 
 <?Php
-   $sql3 = "SELECT * FROM score WHERE user_username='$current_user' AND war_enemy = '$enemy_name' ORDER BY score_id LIMIT 2";
+   $sql3 = "SELECT * FROM score WHERE user_username='$user_name' AND war_enemy = '$enemy_name' ORDER BY score_id LIMIT 2";
     $result3 = mysqli_query($database,$sql3) or die(mysqli_error($database));
     while($userlog3 = mysqli_fetch_array($result3,MYSQLI_BOTH)) {
   ?>            
@@ -162,10 +163,10 @@ $title_user = $row['user_title'];
                                         <img src="imagenes/th/<?php echo $userlog3['score'];?>.png" width="80px" /> 
                                         </div> 
                                         <div class="col-md-2">
-                                        <?php if($userlog['favattack'] == ''){?>
-                                        <img src="imagenes/troops/attacks/none.png" width="80px" />  
+                                        <?php if($userlog3['favattack'] == ''){?>
+                                        <img src="imagenes/troops/attacks/none.png" width="60px" />  
 										<?php }else{?>                              
-                                        <img src="imagenes/troops/attacks/<?php echo $userlog['favattack'];?>.png" width="80px" />
+                                        <img src="imagenes/troops/attacks/<?php echo $userlog3['favattack'];?>.png" width="60px" />
                                         <?php }?>                                           
                                         </div>                                           
                                         
@@ -187,7 +188,7 @@ $title_user = $row['user_title'];
                                      <p><?php echo $enemy_name;?>-Ended</p>
                                      </div>                                                 
 <?Php
-   $sql3 = "SELECT * FROM score WHERE user_username='$current_user' AND war_enemy = '$enemy_name' ORDER BY score_id LIMIT 2";
+   $sql3 = "SELECT * FROM score WHERE user_username='$user_name' AND war_enemy = '$enemy_name' ORDER BY score_id LIMIT 2";
     $result3 = mysqli_query($database,$sql3) or die(mysqli_error($database));
     while($userlog3 = mysqli_fetch_array($result3,MYSQLI_BOTH)) {
   ?>            
@@ -195,10 +196,10 @@ $title_user = $row['user_title'];
                                         <img src="imagenes/th/<?php echo $userlog3['score'];?>.png" width="80px" /> 
                                         </div> 
                                         <div class="col-md-2">
-                                        <?php if($userlog['favattack'] == ''){?>
-                                        <img src="imagenes/troops/attacks/none.png" width="80px" />  
+                                        <?php if($userlog3['favattack'] == ''){?>
+                                        <img src="imagenes/troops/attacks/none.png" width="60px" />  
 										<?php }else{?>                              
-                                        <img src="imagenes/troops/attacks/<?php echo $userlog['favattack'];?>.png" width="80px" />
+                                        <img src="imagenes/troops/attacks/<?php echo $userlog3['favattack'];?>.png" width="60px" />
                                         <?php }?>                                           
                                         </div>                                          
                                         
@@ -209,7 +210,7 @@ $title_user = $row['user_title'];
            
  <?php } ?> 
                                     </div>   
-                                    <div class="col-md-8">
+                                    <div class="col-md-12">
 <?php                                        
  $sql3 = "SELECT * FROM war_table ORDER BY war_warid DESC LIMIT 3,1";
     $result3 = mysqli_query($database,$sql3) or die(mysqli_error($database));
@@ -220,7 +221,7 @@ $title_user = $row['user_title'];
                                      <p><?php echo $enemy_name;?>-Ended</p>
                                      </div>                                                 
 <?Php
-   $sql3 = "SELECT * FROM score WHERE user_username='$current_user' AND war_enemy = '$enemy_name' ORDER BY score_id LIMIT 2";
+   $sql3 = "SELECT * FROM score WHERE user_username='$user_name' AND war_enemy = '$enemy_name' ORDER BY score_id LIMIT 2";
     $result3 = mysqli_query($database,$sql3) or die(mysqli_error($database));
     while($userlog3 = mysqli_fetch_array($result3,MYSQLI_BOTH)) {
   ?>            
@@ -228,10 +229,10 @@ $title_user = $row['user_title'];
                                         <img src="imagenes/th/<?php echo $userlog3['score'];?>.png" width="80px" /> 
                                         </div> 
                                         <div class="col-md-2">
-                                        <?php if($userlog['favattack'] == ''){?>
-                                        <img src="imagenes/troops/attacks/none.png" width="80px" />  
+                                        <?php if($userlog3['favattack'] == ''){?>
+                                        <img src="imagenes/troops/attacks/none.png" width="60px" />  
 										<?php }else{?>                              
-                                        <img src="imagenes/troops/attacks/<?php echo $userlog['favattack'];?>.png" width="80px" />
+                                        <img src="imagenes/troops/attacks/<?php echo $userlog3['favattack'];?>.png" width="60px" />
                                         <?php }?>                                           
                                         </div>         
                                         
@@ -246,7 +247,7 @@ $title_user = $row['user_title'];
                                      <?php } ?>     
                                 </div>
                                 <div class="col-md-5 col-md-offset-1">
-                                <p class="text-center profile-title">Heroes Level</p>
+                                <p class="user_title" style="text-align: center; font-size:16;">Heroes Level</p>
                                 <hr>
                                     <div class="col-md-6">
                                         <p class="profile-details"><i class="fa fa-plus"></i> Barbarian King - <?php echo $rws['user_bk'];?></p>  

@@ -29,7 +29,7 @@
                                                                                         </a>
                                                                                     </div>
                                                                                     <div class="col-md-6 column">
-                                                                                        <h2><a href="profile.php?user_username=<?php echo $rws['user_username'];?>"><?php echo $rws['user_username'];?></a> <small><?php 
+                                                                                        <h2><a href="profile.php?user_username=<?php echo $rws['user_username'];?>"><?php echo $rws['user_username'];?></a><br /> <small><?php 
                         User_Title($rws['user_title']); ?></small></h2>
                                                                                     </div>
                                                                                     <div class="col-md-6">

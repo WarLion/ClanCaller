@@ -4,13 +4,13 @@
 		<?php  if ($caller['user_username3'] == NULL){
 			if ($caller['user_username2'] !== $current_user){
 					if ($caller['user_username1'] !== $current_user){
-			?>
+			if ($calls['calls'] != 2){?>
  <a href="callit.php?e=<?php echo $i;?>&a=3" class="btn btn-success">Call it</a>
         
-        <?php } } }else{?>
+        <?php } } } }else{?>
             <ul class="list-unstyled">
-                <li><strong>Called by</strong></li>
-                <li><h4><?php echo $caller['user_username3'];?></h4></li>
+                    <li><p class="user_title" style="text-align: center; font-size:11;">Called by</p></li>
+                    <li><p  class="user_title" style="text-align: center; font-size:18; color:#FFF;"><?php echo $caller['user_username3'];?></p></li>
          <?php    
 		 $user_score = $caller['user_username3']; // change for # of calls      
          $sql_score = "SELECT * FROM score WHERE war_enemy = '$caller_enemy' && enemy_enemynumber = '$war_enemynumber' && user_username ='$user_score' LIMIT 1";
@@ -25,7 +25,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Stars <?php echo $rws['war_enemy'];?> <?php echo $i;?></h4>
+        <p class="modal-title user_title" style="text-align: center; font-size:18;"><?php echo $rws['war_enemy'];?> Enemy - <?php echo $i;?></p>
       </div>
       <div class="modal-body">
         <div class="container-fluid">

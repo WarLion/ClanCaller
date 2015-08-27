@@ -1,8 +1,8 @@
 <form action="components/update-profile.php" method="post" enctype="multipart/form-data" id="UploadForm">
     <!-- Nav tabs -->
-    <ul class="nav nav-tabs">
-      <li class="active"><a href="#general" data-toggle="tab">General</a></li>
-      <li><a href="#personal" data-toggle="tab">Game Data</a></li>
+    <ul class="nav nav-tabs nav-justified">
+      <li class="active"><a href="#general" data-toggle="tab"> <h4><strong>General</strong></h4></a></li>
+      <li><a href="#personal" data-toggle="tab"> <h4><strong>Game Data</strong></h4></a></li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
