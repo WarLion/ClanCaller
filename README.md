@@ -1,22 +1,11 @@
-the first step is to change your database information here on the file located on the folder
-_database/database.php
-and change your clan name on the same file
+the first step is to copy all files to your ftp server and go to the address www.youdomain.com/install/
+and follow all the steps 
 
-    $hostname = "localhost";
-    $user = "username";
-    $password = "password";
-    $database = "database name";
-    $prefix = "";
-    
+after the installation is complete you need to access your ftp and on the new file on www.youdomain.com/_database/database.php
+
+add your clan name
+$clananame = 'you clan name';
   
-    
-    
-    import the sql files located on the folder to phpmyadmin
-    _database/database.sql
-    
-    dont forget to delete the sql file after you add it to your database 
-    
-    login to the site using 
-    username: admin
-    password: admin
-    
+thats it the installation process will take just a few seconds its a much easier and clean way to install the script 
+
+enjoy
