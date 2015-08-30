@@ -6,6 +6,11 @@
 <div class="container">				
 				<?php
                     include '_database/database.php';
+                    $sql_user = "SELECT * FROM user WHERE user_username='$current_user'";
+                    $result_user = mysqli_query($database,$sql_user) or die(mysqli_error($database));
+                    while($user = mysqli_fetch_array($result_user)){ 
+
+
                     $current_war = $_GET['war_details'];
                     $sql = "SELECT * FROM war_table WHERE war_warid='$current_war'";
                     $result = mysqli_query($database,$sql) or die(mysqli_error($database));
@@ -108,7 +113,7 @@ while($res = mysqli_fetch_array($result)){ ?>
 
         
          <?php   if ($caller['user_username1'] == NULL){
-         			if ($calls['calls'] != 2){?>
+         			if ($calls['calls'] != 2 || $user['user_title'] >= 4){?>
                 <a href="firstcall.php?e=<?php echo $i;?>" class="btn btn-success">Call It First</a>
         
             <?php } }else{?>
@@ -214,13 +219,14 @@ while($res = mysqli_fetch_array($result)){ ?>
                     <?php } }?>
            <?php }?>         
                     
-                        <?php if ($caller['user_username1'] == $current_user){?>
-                        <?PhP if($caller['user_username2'] == NULL){?>
+                        <?php if ($caller['user_username1'] == $current_user || $user['user_title'] >= 4){?>
+                        <?PhP if($caller['user_username2'] == NULL || $user['user_title'] >= 4){?>
                         	<div style="margin-top:20px; margin-bottom:-30px;">
                             <form action="components/delete-caller.php?e=<?php echo $i; ?>&e2=<?php echo $rws['war_enemy'];?>" method="post" enctype="multipart/form-data" id="UploadForm">
                             <input type="hidden" name="war_warid" value="<?php echo $current_war;?>"/>
                             <input type="hidden" name="war_size" value="<?php echo $war_size;?>"/>
                             <input type="hidden" name="user_call" value="user_username1"/>
+                            <input type="hidden" name="user_callit" value="<?php echo $caller['user_username1'];?>"/>
                             <button class="btn btn-danger btn-xs" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" style="margin-top:10;" />Delete</button>
                             </form>
                             </div>
@@ -252,7 +258,7 @@ while($res = mysqli_fetch_array($result)){ ?>
 </div>
 	<?php $i++;};?>                 
         
-  			<?php } }?>
+  			<?php } } }?>
                
 </div> 
 

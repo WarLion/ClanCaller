@@ -4,7 +4,7 @@
 <?php include 'controllers/base/style.php' ?>
 <?php include 'controllers/navigation/first-navigation.php' ?>   
                                                      <div class="container" style="padding-top:50px;">
-                                                       <h2 class="text-center profile-text profile-name">User List</h2>
+                                                       <h2 class="text-center profile-text profile-name">Members List</h2>
                                                       <div class="row clearfix">
                                                           <div class="col-md-12 column">
                                                               <div class="row clearfix">
@@ -18,18 +18,25 @@
 	
 	
 ?>
-                                                                  <div class="col-md-6 column">
+                                                                  <div class="col-md-12 column" style="margin-top:-30px;">
                                                                     <div class="panel-group" id="panel-<?php echo $rws['user_id']; ?>">
                                                                         <div class="panel panel-default">
                                                                             <div id="panel-element-<?php echo $rws['user_id']; ?>" class="panel-collapse collapse in">
                                                                                 <div class="panel-body">
-                                                                                    <div class="col-md-6 column">
+                                                                                    <div class="col-md-2 column text-center">
                                                                                       <a href="profile.php?user_username=<?php echo $rws['user_username'];?>">
-                                                                                        <img src="userfiles/avatars/<?php echo $rws['user_avatar'];?>" name="aboutme" width="90">                                  
+                                                                                        <img src="userfiles/avatars/<?php echo $rws['user_avatar'];?>" name="aboutme" height="60px">                                  
                                                                                         </a>
                                                                                     </div>
+                                                                                    <div class="col-md-4  text-center"> 
+                                                                                    <img src="imagenes/th/<?php echo $rws['user_th'];?>.png" height="60px" />
+                                                                                    <img src="imagenes/troops/troops/<?php echo $rws['user_favtroop'];?>.png" height="50px" />
+     <img src="imagenes/troops/heroes/king.png" alt="<?php echo $rws['user_bk'];?>" height="60"/>
+     <img src="imagenes/troops/heroes/queen.png" alt="<?php echo $rws['user_aq'];?>" height="60"/>
+                                                                                    
+                                                                                    </div>
                                                                                     <div class="col-md-6 column">
-                                                                                        <h2><a href="profile.php?user_username=<?php echo $rws['user_username'];?>"><?php echo $rws['user_username'];?></a><br /> <small><?php 
+                                                                                        <h2><a href="profile.php?user_username=<?php echo $rws['user_username'];?>"><span class="user_title" style="text-align: center; font-size:18; color:#FFF;"><?php echo $rws['user_username'];?></span></a> <small><?php 
                         User_Title($rws['user_title']); ?></small></h2>
                                                                                     </div>
                                                                                     <div class="col-md-6">

@@ -1,7 +1,7 @@
 <?php
     ini_set("display_errors",1);
     session_start();
-    $temp=$_SESSION['user_username'];
+    $temp=$_REQUEST['user_callit'];
     if(isset($_POST)){
         require '../_database/database.php';
         $Destination = '../userfiles/screenshoots';;

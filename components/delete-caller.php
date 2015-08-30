@@ -8,7 +8,7 @@
 		$war_warid=$_REQUEST['war_warid'];
 		$war_size=$_REQUEST['war_size'];
 		$user_call = $_REQUEST['user_call'];
-		$temp=$_SESSION['user_username'];
+		$temp=$_REQUEST['user_callit'];
         $sql3="UPDATE caller SET ".$user_call."='' WHERE war_enemy='$war_enemy' AND war_enemynumber = '$war_enemynumber'";
 		$sql4="DELETE FROM score WHERE user_username='$temp' AND enemy_enemynumber = '$war_enemynumber'";
 			$r2 = mysqli_query($database,$sql3);

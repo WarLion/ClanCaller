@@ -3,7 +3,7 @@
 	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 text-center">
 		<?php  if ($caller['user_username2'] == NULL){
 			if ($caller['user_username1'] !== $current_user){
-			if ($calls['calls'] != 2){?>
+			if ($calls['calls'] != 2 || $user['user_title'] >= 4){?>
  <a href="callit.php?e=<?php echo $i;?>&a=2" class="btn btn-success">Call it</a>
         
         <?php } } }else{?>
@@ -107,12 +107,13 @@
                             </form>                     </li>
                     <?php } }?>   
     <?php }?>            
-                    <?php if ($caller['user_username2'] == $current_user){?>
-                    	<?PhP if($caller['user_username3'] == NULL){?>
+                    <?php if ($caller['user_username2'] == $current_user || $user['user_title'] >= 4){?>
+                    	<?PhP if($caller['user_username3'] == NULL || $user['user_title'] >= 4){?>
                         <form action="components/delete-caller.php?e=<?php echo $i; ?>&e2=<?php echo $rws['war_enemy'];?>" method="post" enctype="multipart/form-data" id="UploadForm">
                         <input type="hidden" name="war_warid" value="<?php echo $current_war;?>"/>
                         <input type="hidden" name="war_size" value="<?php echo $war_size;?>"/>
-                        <input type="hidden" name="user_call" value="user_username2"/> <!-- change for # of calls -->
+                            <input type="hidden" name="user_call" value="user_username2"/>
+                            <input type="hidden" name="user_callit" value="<?php echo $caller['user_username2'];?>"/>
                         <button class="btn btn-danger btn-xs" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" style="margin-top:10;" />Delete</button>
                         </form>
                         <?php }?>

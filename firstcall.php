@@ -13,7 +13,7 @@
 
 <form action="components/callfirst.php?enemy=<?php echo $enemy_number;?>&war_details=<?php echo $rws['war_warid'];?>&war_size=<?php echo $rws['war_size'];?>" method="post" enctype="multipart/form-data" id="UploadForm">
 <input type="hidden" name="war_enemy" value="<?php echo $rws['war_enemy'];?>"/>
-<input type="hidden" name="user_call" value="user_username1"/>
+
 <div class="container" style="padding-top:50px;">
     <h1 class="text-center profile-name" style="margin-top:35;">First Call Enemy <?php echo $enemy_number;?> <br /><small> <?php echo $rws['war_enemy'];?> </small></h1>
     <div class="col-md-12 panel" style="border-radius: 20px; margin-top:20px; margin-bottom:20px; padding-bottom:20px; padding-top:20px;"> 
@@ -88,12 +88,30 @@
                </div>                 	
             </div>      
         </div>
- <div class="submit">
-        <center>
+    <div class="row">
+     <?php
+	$sql_user2 = "SELECT * FROM user WHERE user_username='$current_user'";
+	$result_user2 = mysqli_query($database,$sql_user2) or die(mysqli_error($database));
+	while($user2 = mysqli_fetch_array($result_user2)){ 	 
+	  if ($user2['user_title'] >= 4){?>
+    <input type="hidden" name="user_call" value="user_username1"/>
+    <label class="col-sm-2 control-label">Call it as</label>
+        <div class="col-sm-4">
+            <select class="form-control" name="user_callit">
+                <option value="<?php echo $_SESSION['user_username'];?>"><?php echo $_SESSION['user_username'];?></option>
+                <?php $sql_user = "SELECT * FROM user";
+                $result_user = mysqli_query($database,$sql_user) or die(mysqli_error($database));
+                while($user = mysqli_fetch_array($result_user)){ ?>   
+                <option value="<?php echo $user['user_username'];?>"><?php echo $user['user_username'];?></option>
+                <?php }?>
+            </select>      
+        </div>
+        <?php } }?>
+        <div class="col-md-6 text-right">
             <button class="btn btn-primary ladda-button" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" />Make the Call</button>
-        </center>
-    </div>        
-    </div>
+        </div> 
+	</div>       
+</div>
 </div>
 </form>
 <?php  }?>
