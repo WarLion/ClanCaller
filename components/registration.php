@@ -24,7 +24,7 @@
     $mail = new PHPMailer(); $mail->IsSMTP(); // This is the SMTP mail server 
                                // TCP port to connect to
 							   
-			// EDIT this ifmormation with your server smtp
+			// EDIT this ifmormation with your server smtp (email to the new member)
 			
 //----------------------------------------------------------------------------							   
 $mail->isSMTP();                                      // Set mailer to use SMTP
@@ -50,7 +50,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 }else{
 	
 	
-			// EDIT this ifmormation with your server smtp
+			// EDIT this ifmormation with your server smtp (email to the admin)
 			
 //----------------------------------------------------------------------------		
 $mail2 = new PHPMailer(); 
