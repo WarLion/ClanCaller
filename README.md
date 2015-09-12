@@ -35,3 +35,9 @@ $mail->Port = 465;
 thats it the installation process will take just a few seconds its a much easier and clean way to install the script 
 
 enjoy
+
+
+
+if you find a problem you can send me a message on BAND 
+clanwar script
+http://band.us/n/FREuhy7Y
