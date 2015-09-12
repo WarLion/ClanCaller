@@ -28,10 +28,10 @@
 			
 //----------------------------------------------------------------------------							   
 $mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'rs10.websitehostserver.net';  // Specify main and backup SMTP servers
+$mail->Host = '';  // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'admin@halo-clan.com';                 // SMTP username
-$mail->Password = '7412536974123';                           // SMTP password
+$mail->Username = '';                 // SMTP username
+$mail->Password = '';                           // SMTP password
 $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 465;     							   
 
@@ -55,10 +55,10 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 //----------------------------------------------------------------------------		
 $mail2 = new PHPMailer(); 
 $mail2->IsSMTP(); // This is the SMTP mail server
-$mail2->Host = 'rs10.websitehostserver.net';  // Specify main and backup SMTP servers
+$mail2->Host = '';  // Specify main and backup SMTP servers
 $mail2->SMTPAuth = true;                               // Enable SMTP authentication
-$mail2->Username = 'admin@halo-clan.com';                 // SMTP username
-$mail2->Password = '7412536974123';                           // SMTP password
+$mail2->Username = '';                 // SMTP username
+$mail2->Password = '';                           // SMTP password
 $mail2->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
 $mail2->Port = 465;                                    // TCP port to connect to
 

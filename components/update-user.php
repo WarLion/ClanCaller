@@ -21,10 +21,10 @@
 			
 //----------------------------------------------------------------------------							   
 $mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'rs10.websitehostserver.net';  // Specify main and backup SMTP servers
+$mail->Host = '';  // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'admin@halo-clan.com';                 // SMTP username
-$mail->Password = '7412536974123';                           // SMTP password
+$mail->Username = '';                 // SMTP username
+$mail->Password = '';                           // SMTP password
 $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 465;     							   
 
