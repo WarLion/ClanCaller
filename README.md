@@ -12,7 +12,7 @@ $url = 'http://www.yourpage.com/clanwars_script';
 
 
 //email adreess
-$from = ''; //email where is from ej noreply@yourpage.com
+$from = ''; //email where is from ej admin@yourpage.com
 
 also to recieve new registration to your email edit 
 this files
