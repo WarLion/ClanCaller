@@ -60,9 +60,8 @@ while($res = mysqli_fetch_array($result)){ ?>
 <div class="col-md-12" style="border-radius: 20px; background-image:url(imagenes/back_panel.png); margin-top: 22px; padding-bottom:20px; padding-top:20px;">
     <div class="row">
 
-
-<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 text-center"><p class="user_title" style="font-size:18; text-align: center;">Enemy - <?php echo $i; ?></p></div>
-    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 text-center">
+<div class="visible-xs col-xs-3"></div> 
+<div class="col-xs-6 col-sm-4 col-md-4"><p class="user_title" style="font-size:16;">Enemy - <?php echo $i; ?></p>
         <div style="position: relative; left: 0; top: 0;">
 <?php 
 		$caller_enemy = $rws['war_enemy'];
@@ -90,7 +89,7 @@ while($res = mysqli_fetch_array($result)){ ?>
         <p class="user_title" style="font-size:18; text-align: left;">Enemy - <?php echo $i; ?> - Base</p>
       </div>
       <div class="modal-body">
-        <img class="img-responsive" src="userfiles/screenshoots/<?php echo $caller_th['call_base'];?>"/></a> 
+        <img class="img-responsive center-block" src="userfiles/screenshoots/<?php echo $caller_th['call_base'];?>"/></a> 
       </div>
       <div class="modal-footer" style="text-align:center;">
       <a href="userfiles/screenshoots/<?php echo $caller_th['call_base'];?>" class="btn btn-primary">Full screen</a>
@@ -109,11 +108,11 @@ while($res = mysqli_fetch_array($result)){ ?>
         $result_caller = mysqli_query($database,$sql_caller) or die(mysqli_error($database));
         while($caller = mysqli_fetch_array($result_caller)){ ?>    
     <!-- caller 1-->
-    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 text-center">
+    <div class="col-xs-6 col-sm-4 col-md-2 text-center" style="padding:20px;">
 
         
          <?php   if ($caller['user_username1'] == NULL){
-         			if ($calls['calls'] != 2 || $user['user_title'] >= 4){?>
+         			if ($calls['calls'] != 2 || $user['user_title'] >= 3){?>
                 <a href="firstcall.php?e=<?php echo $i;?>" class="btn btn-success">Call It First</a>
         
             <?php } }else{?>
@@ -144,7 +143,26 @@ while($res = mysqli_fetch_array($result)){ ?>
             	 <div class="row">
                  <label for=""><?php echo $score['user_username'];?>`s attack plan</label>	
                  	<div class="col-md-12" style="padding-bottom:10;">
-            			<a href="<?php echo $score['plan'];?>"><img src="<?php echo $score['plan'];?>" height="95" class="img-thumbnail"/></a>
+                    <?php if ($score['plan'] == 'userfiles/screenshoots/noplan.jpg') {?>
+                    <?php if ($caller['user_username1'] == $current_user){?>
+            			 <form action="planner.php" method="post" enctype="multipart/form-data" id="UploadForm">
+                            <input type="hidden" name="enemy" value="<?php echo $i;?>"/>
+                            <input type="hidden" name="enemyname" value="<?php echo $rws['war_enemy'];?>"/>
+                            <input type="hidden" name="war_size" value="<?php echo $war_size;?>"/>
+                            <input type="hidden" name="war_warid" value="<?php echo $current_war;?>"/>
+                            <button class="btn btn-success btn-xs" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" style="margin-top:10;" />Plan your attack!</button> </form> 
+                            <?Php }?>
+                        <?php }else{?>
+                        <a href="<?php echo $score['plan'];?>"><img src="<?php echo $score['plan'];?>" height="95" class="img-thumbnail"/></a>
+                        <?php if ($caller['user_username1'] == $current_user){?>
+            			 <p><form action="planner.php" method="post" enctype="multipart/form-data" id="UploadForm">
+                            <input type="hidden" name="enemy" value="<?php echo $i;?>"/>
+                            <input type="hidden" name="enemyname" value="<?php echo $rws['war_enemy'];?>"/>
+                            <input type="hidden" name="war_size" value="<?php echo $war_size;?>"/>
+                            <input type="hidden" name="war_warid" value="<?php echo $current_war;?>"/>
+                            <button class="btn btn-success btn-xs" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" style="margin-top:10;" />edit your plan</button> </form>    </p> 
+                            <?php }?>                    
+                        <?php }?>
                     </div>
                   </div> 
                     <?php if ($score['favattack']){?>
@@ -227,7 +245,7 @@ while($res = mysqli_fetch_array($result)){ ?>
                             <input type="hidden" name="war_size" value="<?php echo $war_size;?>"/>
                             <input type="hidden" name="user_call" value="user_username1"/>
                             <input type="hidden" name="user_callit" value="<?php echo $caller['user_username1'];?>"/>
-                            <button class="btn btn-danger btn-xs" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" style="margin-top:10;" />Delete</button>
+                            <button class="btn btn-danger btn-xs" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" style="margin-top:10;" onclick="return confirm('Are you sure you want to delete the call on Enemy <?php echo $i; ?> by <?php echo $caller['user_username1'];?>?')"/>Delete</button>
                             </form>
                             </div>
                             <?php }?>

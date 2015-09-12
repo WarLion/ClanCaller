@@ -8,15 +8,15 @@
         <div class="container">
             <div class="row centered">
                     <div class="col-lg-12">
-                    <h1>ClanWars</h1>
-                    <h3>Plan your attack and win the war!</h3>
+                    <h1>ClanWars<br>
+                    <small>Plan your attack and win the war!</small></h1>
                     <br>
                     <div class="col-lg-2">
                     </div>
                     <div class="col-lg-8 form_corners" >
                     <form role="form" action="components/login-process.php" method="post" name="login">
                         <div class="form-group">
-                        <label for="inputUsernameEmail">Username or email</label>
+                        <label for="inputUsernameEmail">Username</label>
                         <input type="text" class="form-control" id="inputUsernameEmail" name="username" placeholder="Username">
                         </div>
                         <div class="form-group">
@@ -27,12 +27,17 @@
                     Log In  
                     </button>
                     <a href="register.php" class="btn btn btn-primary ladda-button">Sign Up</a>
+                    <div class="row  centered">
+                    <br />
+                   <!--- coming soon ----- <h6><a href="forget.php">Forgot password?</a></h6>-->
+                    </div>                    
                     </form>
                     </div>
                     <div class="col-lg-2">
                     </div>
                 	</div>
+                    
 			</div>
         </div> <!--/ .container -->
     </div><!--/ #headerwrap -->
-</body>    
+</body>   

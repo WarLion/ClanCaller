@@ -26,7 +26,7 @@ function User_Title($title_user){
     <!-- Navbar1 -->
 	    <div id="navigation" class="navbar navbar-default navbar-fixed-top">
 	      <div class="fluid-container">
-	        <div class="navbar-header">
+	        <div class="navbar-header" style=" margin-right:10px;">
 	          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1">
 	            <span class="icon-bar"></span>
 	            <span class="icon-bar"></span>
@@ -41,10 +41,12 @@ function User_Title($title_user){
                         <div id="display"></div>
 				    </div> 
 				</form>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $row['user_username'];?><strong class="caret"></strong></a>                  
-                        <ul class="dropdown-menu">
+                <ul class="nav navbar-nav navbar-right"  style=" margin-right:20px;">
+                    <li class="dropdown" >
+                    
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $row['user_username'];?><strong class="caret"></strong> </a>
+                                                <ul class="dropdown-menu">
+                                                <h5>User Menu</h5>
                             <li>
                                 <a href="profile.php?user_username=<?php echo $row['user_username'];?>"><i class="fa fa-edit"></i>Profile</a>
                                 <a href="edit-profile.php"><i class="fa fa-edit"></i> Edit Profile</a>
@@ -54,10 +56,10 @@ function User_Title($title_user){
                     </li>	
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-bars" style="font-size: 1.27em;"></i>
+                            <i class="fa fa-bars" style="font-size: 1.27em; right:"></i>
                         </a>
                         <ul class="dropdown-menu">
-                        	<h4>User menu</h4>
+                        	<h5>Menu</h5>
 <?php
  $sql = "SELECT * FROM war_table ORDER BY war_warid DESC LIMIT 1";
     $result = mysqli_query($database,$sql) or die(mysqli_error($database));
@@ -68,18 +70,22 @@ function User_Title($title_user){
 <?php } ?>                            
                             <li><a href="rules.php"><i class="fa fa-list"> </i>Rules</a></li>
                             <li><a href="all-users.php"><i class="fa fa-th-large"></i> View all users</a></li>
-                            
+                            <li><a href="bugs.php"><i class="fa fa-th-large"></i>Report a bug</a></li>
+                         <?php  
+$title_user = $row['user_title'];
+if ($title_user >= 3){?>
+<li><a href="createwar.php"><i class="fa fa-star"></i> Create War</a></li>
+<?php }?>
                             
                          <?php  
-						 
 $title_user = $row['user_title'];
 if ($title_user >= 4){
-		echo '<h4>Admin menu</h4>
-                          <li><a href="createwar.php"><i class="fa fa-star"></i> Create War</a></li>
+		echo '<h5>Admin menu</h5>
 						  <li><a  href="edit-rules.php"><i class="fa fa-edit"></i> Edit Rules</a></li>
-						  <li><a  href="stats_global.php"><i class="fa fa-list-alt"></i> Clan Stats</a></li>';
+						  <li><a  href="stats_global.php"><i class="fa fa-list-alt"></i> Clan Stats</a></li>
+						  <li><a  href="clan_info.php"><img src="imagenes/logo.png" height="20"> Clan Info</a></li>';
 	}
- ?> 
+ ?>
                             <li></li>
                             <li></li>
                         </ul>

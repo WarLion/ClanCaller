@@ -18,9 +18,8 @@
     <h1 class="text-center profile-name" style="margin-top:35;">First Call Enemy <?php echo $enemy_number;?> <br /><small> <?php echo $rws['war_enemy'];?> </small></h1>
     <div class="col-md-12 panel" style="border-radius: 20px; margin-top:20px; margin-bottom:20px; padding-bottom:20px; padding-top:20px;"> 
     <div class="col-md-12 text-right"> <img src="imagenes/close.png" width="20" height="20" onclick="goBack()" style="cursor:pointer;"/><script>function goBack() {window.history.back();}</script></div> 
-        <div class="col-md-12">
             <div class="col-md-6 text-center">
-                <div class="form-group float-label-control">
+                <div class="form-group">
                     <label for="">Enemy TownHall Lv</label>
                     <div class="cc-selector-2">
                    		 <input type="hidden" name="call_th" value="noselect"/>
@@ -43,15 +42,21 @@
                     $result2 = mysqli_query($database,$sql2) or die(mysqli_error($database));
                     while($rws2 = mysqli_fetch_array($result2)){
 						?>				
-                <img src="userfiles/screenshoots/<?php echo $rws2['call_base'];?>" class="img-responsive">
+                <img src="userfiles/screenshoots/<?php echo $rws2['call_base'];?>" class="img-responsive center-block">
+                <input class="form-control" type="hidden" name="screenshoot" value="<?php echo $rws2['call_base'];?>"/>
                 </div>
                 <div class="col-md-6">
-                <div class="form-group float-label-control">
 <div class="form-group float-label-control">
-<label>Base screenshoot</label>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<label data-toggle="tooltip" title="Here you can upload a screenshot of the enemy base!">Base screenshoot <span class="badge"><span class="fa fa-info"></span></span></label>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
     <input name="ImageFile" type="file" id="uploadFile"/>
-    <label>or paste a image link</label>
-    <input class="form-control" type="text" name="screenshoot" value="<?php echo $rws2['call_base'];?>"/>
     <div class="col-md-6">
         <div class="shortpreview" id="uploadImagePreview">
              <div id="imagePreview"></div>
@@ -59,7 +64,6 @@
     </div>
 </div>   
 <?php }?> 
-            	</div> 
                 </div>               
             </div>  
             <div class="row">
@@ -77,7 +81,7 @@
                                 <label class="favattack-cc gowipe" for="gowipe"></label>
                                 <input id="gowiwi" type="radio" name="user_favattack" value="gowiwi" style="display:none" />
                                 <label class="favattack-cc gowiwi"for="gowiwi"></label>
-                                <input id="lalonion" type="radio" name="user_favattack" value="lalo"  style="display:none"/>
+                                <input id="lalonion" type="radio" name="user_favattack" value="lalonion"  style="display:none"/>
                                 <label class="favattack-cc lalonion" for="lalonion"></label>  
                                 <input id="dragons" type="radio" name="user_favattack" value="dragons"  style="display:none"/>
                                 <label class="favattack-cc dragons" for="dragons"></label>   
@@ -87,30 +91,34 @@
                     </div>
                </div>                 	
             </div>      
-        </div>
     <div class="row">
      <?php
 	$sql_user2 = "SELECT * FROM user WHERE user_username='$current_user'";
 	$result_user2 = mysqli_query($database,$sql_user2) or die(mysqli_error($database));
 	while($user2 = mysqli_fetch_array($result_user2)){ 	 
-	  if ($user2['user_title'] >= 4){?>
+	  if ($user2['user_title'] >= 3){?>
     <input type="hidden" name="user_call" value="user_username1"/>
-    <label class="col-sm-2 control-label">Call it as</label>
-        <div class="col-sm-4">
+    <label class="col-sm-2 col-xs-4 control-label">Call it as</label>
+        <div class="col-sm-4 col-xs-8">
             <select class="form-control" name="user_callit">
                 <option value="<?php echo $_SESSION['user_username'];?>"><?php echo $_SESSION['user_username'];?></option>
-                <?php $sql_user = "SELECT * FROM user";
+                <option value="Other">Other</option>
+                <?php $sql_user = "SELECT * FROM user  ORDER BY user_username ASC";
                 $result_user = mysqli_query($database,$sql_user) or die(mysqli_error($database));
                 while($user = mysqli_fetch_array($result_user)){ ?>   
                 <option value="<?php echo $user['user_username'];?>"><?php echo $user['user_username'];?></option>
                 <?php }?>
             </select>      
         </div>
-        <?php } }?>
-        <div class="col-md-6 text-right">
+        <?php }else{?>
+		 <input type="hidden" name="user_call" value="user_username1"/>
+         <input type="hidden" name="user_callit" value="<?php echo $_SESSION['user_username'];?>"/>
+		
+		 <?php }}?>
+	</div>   
+        <div class="col-md-12 text-right" style="padding-top:15px;">
             <button class="btn btn-primary ladda-button" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" />Make the Call</button>
-        </div> 
-	</div>       
+        </div>         
 </div>
 </div>
 </form>

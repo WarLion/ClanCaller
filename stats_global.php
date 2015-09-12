@@ -159,8 +159,8 @@
 		$porcent_mem = ($b * 100) / $a;
 		?> 
       <div style="border:solid #999 1px;; padding:3px;">     	  
-    <strong><?php echo $mem['user_username'];?></strong> <span class="badge" style="background-color:#090;"><?php echo $porcent_mem;?> %</span></a><br /> 
-    <?php echo $mem['memcount'];?> - Attacks, <?php echo $mem2['memcount2'];?> - 3 <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><br />
+   <a href="profile.php?user_username=<?php echo $mem['user_username'];?>" class="list-group-item"> <strong><?php echo $mem['user_username'];?></strong> <span class="badge" style="background-color:#090;"><?php echo $porcent_mem;?> %</span><br /> 
+    <?php echo $mem['memcount'];?> - Attacks, <?php echo $mem2['memcount2'];?> - 3 <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><br /></a>
 	</div>
     
     <?php } }?>       
@@ -180,8 +180,8 @@
 		$porcent_mem = ($b * 100) / $a;
 		?> 
       <div style="border:solid #999 1px;; padding:3px;">     	  
-    <strong><?php echo $mem['user_username'];?></strong> <span class="badge" style="background-color:#A9C120;"><?php echo $porcent_mem;?> %</span></a><br /> 
-    <?php echo $mem['memcount'];?> - Attacks, <?php echo $mem2['memcount2'];?> - 2 <span class="fa fa-star"></span><span class="fa fa-star"></span></span><br />
+    <a href="profile.php?user_username=<?php echo $mem['user_username'];?>" class="list-group-item"><strong><?php echo $mem['user_username'];?></strong> <span class="badge" style="background-color:#A9C120;"><?php echo $porcent_mem;?> %</span><br /> 
+    <?php echo $mem['memcount'];?> - Attacks, <?php echo $mem2['memcount2'];?> - 2 <span class="fa fa-star"></span><span class="fa fa-star"></span></span><br /></a>
 	</div>
     
     <?php } }?>       
@@ -201,8 +201,8 @@
 		$porcent_mem = ($b * 100) / $a;
 		?> 
       <div style="border:solid #999 1px;; padding:3px;">     	  
-    <strong><?php echo $mem['user_username'];?></strong> <span class="badge" style="background-color:orange;"><?php echo $porcent_mem;?> %</span></a><br /> 
-    <?php echo $mem['memcount'];?> - Attacks, <?php echo $mem2['memcount2'];?> - 1 <span class="fa fa-star"></span></span><br />
+    <a href="profile.php?user_username=<?php echo $mem['user_username'];?>" class="list-group-item"><strong><?php echo $mem['user_username'];?></strong> <span class="badge" style="background-color:orange;"><?php echo $porcent_mem;?> %</span><br /> 
+    <?php echo $mem['memcount'];?> - Attacks, <?php echo $mem2['memcount2'];?> - 1 <span class="fa fa-star"></span></span><br /></a>
 	</div>
     
     <?php } }?>       
@@ -222,8 +222,8 @@
 		$porcent_mem = ($b * 100) / $a;
 		?> 
       <div style="border:solid #999 1px;; padding:3px;">     	  
-    <strong><?php echo $mem['user_username'];?></strong> <span class="badge" style="background-color:red;"><?php echo $porcent_mem;?> %</span></a><br /> 
-    <?php echo $mem['memcount'];?> - Attacks, <?php echo $mem2['memcount2'];?> - Fail</span><br />
+   <a href="profile.php?user_username=<?php echo $mem['user_username'];?>" class="list-group-item"> <strong><?php echo $mem['user_username'];?></strong> <span class="badge" style="background-color:red;"><?php echo $porcent_mem;?> %</span><br /> 
+    <?php echo $mem['memcount'];?> - Attacks, <?php echo $mem2['memcount2'];?> - Fail</span><br /></a>
 	</div>
     
     <?php } }?>       

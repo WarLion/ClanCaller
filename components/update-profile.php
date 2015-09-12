@@ -35,13 +35,14 @@
         }  
         $user_firstname=$_REQUEST['user_firstname'];
         $user_email=$_REQUEST['user_email'];
-        $user_password=$_REQUEST['user_password'];
 		$user_favtroop=$_REQUEST['user_favtroop'];
 		$user_favattack=$_REQUEST['user_favattack'];
 		$user_th=$_REQUEST['user_th'];
 		$user_bk=$_REQUEST['user_bk'];
 		$user_aq=$_REQUEST['user_aq'];
-        $sql3="UPDATE user SET user_firstname='$user_firstname',user_email='$user_email',user_password='$user_password',user_favtroop='$user_favtroop',user_favattack='$user_favattack',user_th='$user_th',user_bk='$user_bk',user_aq='$user_aq' WHERE user_username = '$temp'";
+		$private=$_REQUEST['user_email_get'];
+		$slogan =$_REQUEST['user_slogan'];
+        $sql3="UPDATE user SET user_firstname='$user_firstname',user_email='$user_email',user_favtroop='$user_favtroop',user_favattack='$user_favattack',user_th='$user_th',user_bk='$user_bk',user_aq='$user_aq', user_email_get='$private', user_slogan = '$slogan' WHERE user_username = '$temp'";
             mysqli_query($database,$sql3)or die(mysqli_error($database));
             header("location:../edit-profile.php?user_username=$temp&request=profile-update&status=success");
     }    

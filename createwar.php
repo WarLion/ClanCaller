@@ -13,13 +13,13 @@
     $rws = mysqli_fetch_array($result);
 ?>             
 <?php 
-if ($title_user >= 4){
+if ($title_user >= 3){
 		include ("controllers/form/createwar-form.php"); 
     }else {
 	?> <div class="panel panel-default" id="sidebar">
                    <div class="panel-body">   
                    <center>
-    <h2>You dont have access only Co-leaders and Leaders can create Wars</h2>
+    <h2>You dont have access only Eldesr, Co-leaders and Leaders can create Wars</h2>
     </center>
     </div>
                </div>

@@ -1,4 +1,3 @@
-
 <?php include 'controllers/base/head.php' ?>
 
  <style>

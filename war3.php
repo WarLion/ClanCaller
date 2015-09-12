@@ -1,11 +1,12 @@
 <!-- second call ----->
     <?PhP if($caller['user_username2']){?>
-	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 text-center">
+    <div class="row visible-xs-block visible-sm-block"></div>
+	<div class="col-md-2 col-sm-6 col-xs-6 text-center" style="padding:20px;">
 		<?php  if ($caller['user_username3'] == NULL){
-			if ($caller['user_username2'] !== $current_user){
-					if ($caller['user_username1'] !== $current_user){
-			if ($calls['calls'] != 2 || $user['user_title'] >= 4){?>
- <a href="callit.php?e=<?php echo $i;?>&a=3" class="btn btn-success">Call it</a>
+			if ($caller['user_username2'] !== $current_user || $user['user_title'] >= 3){
+					if ($caller['user_username1'] !== $current_user || $user['user_title'] >= 3){
+			if ($calls['calls'] != 2 || $user['user_title'] >= 3){?>
+ <a href="callit.php?e=<?php echo $i;?>&a=3" class="btn btn-success" style="margin-top:80px;">Call it</a>
         
         <?php } } } }else{?>
             <ul class="list-unstyled">
@@ -34,7 +35,27 @@
             	 <div class="row">
                  <label for=""><?php echo $score['user_username'];?>`s attack plan</label>	
                  	<div class="col-md-12" style="padding-bottom:10;">
-            			<a href="<?php echo $score['plan'];?>"><img src="<?php echo $score['plan'];?>" height="95" class="img-thumbnail"/></a>
+ <?php if ($score['plan'] == 'userfiles/screenshoots/noplan.jpg') {?>
+ 						<?php if ($caller['user_username3'] == $current_user){?>
+            			 <form action="planner.php" method="post" enctype="multipart/form-data" id="UploadForm">
+                            <input type="hidden" name="enemy" value="<?php echo $i;?>"/>
+                            <input type="hidden" name="enemyname" value="<?php echo $rws['war_enemy'];?>"/>
+                            <input type="hidden" name="war_size" value="<?php echo $war_size;?>"/>
+                            <input type="hidden" name="war_warid" value="<?php echo $current_war;?>"/>
+                            <button class="btn btn-success btn-xs" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" style="margin-top:10;" />Plan your attack!</button></form> 
+                            <?php }?>
+                        <?php }else{?>
+                        
+                        <a href="<?php echo $score['plan'];?>"><img src="<?php echo $score['plan'];?>" height="95" class="img-thumbnail"/></a>
+            			 <?php if ($caller['user_username3'] == $current_user){?>
+                         <p><form action="planner.php" method="post" enctype="multipart/form-data" id="UploadForm">
+                            <input type="hidden" name="enemy" value="<?php echo $i;?>"/>
+                            <input type="hidden" name="enemyname" value="<?php echo $rws['war_enemy'];?>"/>
+                            <input type="hidden" name="war_size" value="<?php echo $war_size;?>"/>
+                            <input type="hidden" name="war_warid" value="<?php echo $current_war;?>"/>
+                            <button class="btn btn-success btn-xs" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" style="margin-top:10;" />edit your plan</button> </form>    </p> 
+                            <?php }?>
+                        <?php }?>
                     </div>
                   </div> 
                     <?php if ($score['favattack']){?>
@@ -115,7 +136,7 @@
                         <input type="hidden" name="war_size" value="<?php echo $war_size;?>"/>
                             <input type="hidden" name="user_call" value="user_username3"/>
                             <input type="hidden" name="user_callit" value="<?php echo $caller['user_username3'];?>"/>
-                        <button class="btn btn-danger btn-xs" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" style="margin-top:10;" />Delete</button>
+                        <button class="btn btn-danger btn-xs" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" style="margin-top:10;" onclick="return confirm('Are you sure you want to delete the call on Enemy <?php echo $i; ?> by <?php echo $caller['user_username3'];?>?')"/>Delete</button>
                         </form>
                         <?php }?>
                     <?php }?>

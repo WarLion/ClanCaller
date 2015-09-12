@@ -1,13 +1,13 @@
 <?php
     ini_set("display_errors",1);
     session_start();
-    $temp=$_REQUEST['user_callit'];
+	$temp=$_REQUEST['user_callit'];	
     if(isset($_POST)){
         require '../_database/database.php';
-        $Destination = '../userfiles/screenshoots';;
+        $Destination = '../userfiles/screenshoots';
 		$war_enemy=$_REQUEST['war_enemy'];
 		$war_enemynumber = $_GET['enemy'];
-		$screenshoot = $_REQUEST['screenshoot'];
+		$screenshoot = $_REQUEST['screenshoot'];;
         if(!isset($_FILES['ImageFile']) || !is_uploaded_file($_FILES['ImageFile']['tmp_name'])){
             $NewImageName= $screenshoot;
             move_uploaded_file($_FILES['ImageFile']['tmp_name'], "$Destination/$NewImageName");

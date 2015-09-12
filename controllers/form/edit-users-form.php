@@ -5,34 +5,21 @@
             <div class="col-md-6">                    
                 <div class="panel panel-default">
                     <div class="panel-heading ">
-						UserName
+						<h4 class="user_title" style="font-size:18;">UserName</h4>
                     </div>
-                    <div class="panel-body">
-						<h2 class="user_title" style="font-size:22;"><?php echo $rws['user_username'];?></h2>
-                    </div>
+                       <form action="components/update-user.php" method="post" enctype="multipart/form-data" id="UploadForm">               
+                    <input type="text" class="form-control" placeholder="<?php echo $rws['user_username'];?>" name="user_username" value="<?php echo $rws['user_username'];?>" style="margin:10px; width:95%;">
+              
                 </div>  
             </div>           
             <div class="col-md-6">  
                 <div class="panel panel-default">
                     <div class="panel-heading">
-						Title
+					<h4 class="user_title" style="font-size:18;">Title</h4>
                     </div>
                     <div class="panel-body">
-                     <h1 class="user_title" style="font-size:22;">
-                        <?php User_Title($rws['user_title']); ?>
-                      </h1>
-                    </div>
-                </div>                                
-             </div> 
-			 <div class="col-md-6">  
-                    <div class="panel-body">
-                    
-                    </div>
-                </div> 
-			 <div class="col-md-6">  
-                    <div class="panel-body">
-                    <form action="components/update-user.php?user_username=<?php echo $rws['user_username'];?>" method="post" enctype="multipart/form-data" id="UploadForm">
- 					<label for="">Change Title</label>
+            <input type="hidden" name="user_password" value="<?php echo $rws['user_password'];?>"/> 
+             <input type="hidden" name="user_email" value="<?php echo $rws['user_email'];?>"/>                     
                         <select name="user_title" class="form-control">
                             <option value="<?php echo $rws['user_title'];?>"><?php 
                         User_Title($rws['user_title']); ?></option>
@@ -59,7 +46,9 @@
                             
                         </select>
                     </div>
-                </div>                                                
+                </div>                                
+             </div> 
+                                              
              
 						
              
@@ -70,12 +59,13 @@
     <div class="submit">
         <center>
         <?php if($rws['user_title'] <= 4){?>
+            <input type="hidden" name="user_username" value="<?php echo $rws['user_username'];?>"/>       	
             <button class="btn btn-primary ladda-button" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" />Edit <?php echo $rws['user_username'];?><?php echo $row['user_username'];?></button>
             </form> 
         </center> 
                  
             <?php 
-				 if($rws['user_title'] <= 4){?>
+				 if($rws['user_title'] <= 5){?>
 <div class="text-right">                   
 <form id="form1" action="components/delete-user.php" method="post">
 <input type="hidden" name="user_username" value="<?php echo $rws['user_username'];?>"/>

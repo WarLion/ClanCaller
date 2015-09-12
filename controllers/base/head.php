@@ -1,6 +1,7 @@
     <?php include 'controllers/base/meta-tags.php' ?>
     <title><?php echo $clananame;?> - Clan Wars</title>
-
+<link rel="shortcut icon" href="imagenes/favicon.ico" type="image/icon"> 
+<link rel="icon" href="imagenes/favicon.ico" type="image/icon">
     <?php include 'controllers/base/javascript.php' ?>
     <?php include 'controllers/base/css.php' ?>
 

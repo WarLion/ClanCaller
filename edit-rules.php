@@ -4,7 +4,7 @@
 <?php include 'controllers/base/style.php' ?> 	
 <?php include 'controllers/navigation/first-navigation.php' ?>          
      <div class="container" style="padding-top:50px;">
-    <h1 class="text-center profile-text profile-name">Edite Rules</h1>
+    <h1 class="text-center profile-text profile-name">Edit Rules</h1>
 	   <div class="no-gutter row"> 
            <div class="col-md-12">
                <div class="panel panel-default" id="sidebar">

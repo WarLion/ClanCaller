@@ -82,29 +82,45 @@ $war_warid = $_REQUEST['war_warid'];
     });
 </script>-->
 <div class="col-md-6">
-<p> Get the  the app <strong>Skitch</strong> to plan your attack and share it <p /> 
-<a href="https://play.google.com/store/apps/details?id=com.evernote.skitch"><img src="imagenes/androidapp.png" width="100" style="padding-bottom:5; padding-top:5;"/><br /></a>
-<a href="https://itunes.apple.com/us/app/skitch-snap.-mark-up.-share./id425955336?mt=12&uo=4"><img src="imagenes/appleapp.png" width="100"/></a>
-<div >
-<br />
-<a href="http://i.imgur.com/hoJzwpp.jpg"><img src="http://i.imgur.com/hoJzwpp.jpg" class="img-responsive img-thumbnail"/></a>
-<br />
-</div>
-</div>
-<div class="col-md-6">
 
              <form action="components/update-planner.php" method="post" enctype="multipart/form-data" id="UploadForm">
-             <label>Paste the link to the image from a cloud service!</label>
-            <input name="plan" id="plan" class="form-control" type="text" placeholder="Link to image"></input>
             <input type="hidden" name="enemy" value="<?php echo $enemy;?>"/>
             <input type="hidden" name="enemyname" value="<?php echo $enemyname;?>"/>
             <input type="hidden" name="war_size" value="<?php echo $war_size;?>"/>
-            <input type="hidden" name="war_warid" value="<?php echo $war_warid;?>"/>            
-            <button class="btn btn-success btn-primary" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" />save it</button>
-            </form>
+            <input type="hidden" name="war_warid" value="<?php echo $war_warid;?>"/>       
+                <?php 
+				
+                    $sql2 = "SELECT * FROM caller WHERE war_enemy = '$enemyname' && war_enemynumber = '$enemy'";
+                    $result2 = mysqli_query($database,$sql2) or die(mysqli_error($database));
+                    while($rws2 = mysqli_fetch_array($result2)){
+						?>				
+                <img src="userfiles/screenshoots/<?php echo $rws2['call_base'];?>" class="img-responsive">
 </div>
+<div class="col-md-6">                
+<div class="form-group float-label-control">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<label data-toggle="tooltip" title="Here you can upload a plan attack of the enemy base!">Your Plan Attack <span class="badge"><span class="fa fa-info"></span></span></label>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+    <input name="ImageFile" type="file" id="uploadFile"/>
+ </div>   
+        <div class="shortpreview" id="uploadImagePreview">
+             <div id="imagePreview"></div>
+        </div>
+<?php }?> 
+</div>
+           <div class="row">
+           <div class="col-md-12 text-center">              
+            <button class="btn btn-success btn-primary" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" />save it</button>
+            </div>
+            </div>
+            </form>
+
 <?php 
  }?>
- </div>
-  </div>
-   </div>
+</div></div></div>

@@ -5,7 +5,8 @@
         $errmsg_arr = array();
         $errflag = false;
         $username=  mysqli_real_escape_string($database,$_REQUEST['username']);
-        $password=  mysqli_real_escape_string($database,$_REQUEST['password']);
+        $user_passwordnoencript=  mysqli_real_escape_string($database,$_REQUEST['password']);
+		$password=md5($user_passwordnoencript); // Encrypted Password			
         if($username == '') {
             $errmsg_arr[] = 'Username missing';
             $errflag = true;

@@ -9,16 +9,34 @@
                      <div class="row">     
                          <div class="col-lg-12">
                             <div class="form-group">
-                                <input type="email" class="form-control input-lg" placeholder="Email Address" name="user_email">
-                                <label style="font-size:12px;">*optional</label>
+                            	<div class="input-group">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>  
+                                <input type="email" class="form-control input-lg" placeholder="Email Address" name="user_email" required><span class="input-group-addon"><a href="#" title="" data-toggle="popover" data-trigger="hover" data-content="Necessary for forgotten password" data-placement="left"><img src="imagenes/info-xxl.png" width="20" height="20" /></a></span>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();   
+});
+</script>                       </div>        
                             </div>
                          </div>
+                     </div>
+                     <div class="row">
+                         <div class="col-lg-12">
+                            <div class="form-group">
+    <label>
+    <input type="hidden" name="user_email_get" value="1" />
+      <input name="user_email_get" value="2" type="checkbox"> Do you want your email to be secret? 
+    </label>                         
+                            </div>
+                         </div>                     
                      </div>
                      <div class="row">   
                          <div class="col-lg-12">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="username" class="form-control input-lg" placeholder="username" name="user_username" id="user_username" required> 
+                                    <input type="username" class="form-control input-lg" placeholder="Username of Clash of Clans" name="user_username" id="user_username" required> 
+                                  
                                     <span class="input-group-addon" id="status"></span>
                                 </div>
                              </div>
@@ -36,6 +54,8 @@
 				<div class="form-group float-label-control">
                     <label for="">Your TownHall Lv</label>
                         <div class="cc-selector-2">
+                            <input id="th7" type="radio" name="user_th" value="th7" style="display:none" />
+                            <label class="favattack-cc th7" for="th7"></label>
                             <input id="th8" type="radio" name="user_th" value="th8" style="display:none" />
                             <label class="favattack-cc th8" for="th8"></label>
                             <input id="th9" type="radio" name="user_th" value="th9" style="display:none" />

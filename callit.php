@@ -58,16 +58,28 @@
                     $sql2 = "SELECT * FROM caller WHERE war_enemy = '$war_enemy' && war_enemynumber = '$enemy_number'";
                     $result2 = mysqli_query($database,$sql2) or die(mysqli_error($database));
                     while($rws2 = mysqli_fetch_array($result2)){
-						?>				
-                <img src="userfiles/screenshoots/<?php echo $rws2['call_base'];?>" class="img-responsive">
+						?>	
+                        <label>Current Base </label>			
+                <img src="userfiles/screenshoots/<?php echo $rws2['call_base'];?>" class="img-responsive center-block">
+                <input class="form-control" type="hidden" name="screenshoot" value="<?php echo $rws2['call_base'];?>"/>
                 </div>
-                <div class="col-md-6">
+                
+               
+                <div class="col-md-6"> 
                 <div class="form-group float-label-control">
+<?php if($rws2['call_base'] == 'noscreen.jpg'){;?>                
 <div class="form-group float-label-control">
-<label>Base screenshoot</label>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<label data-toggle="tooltip" title="Here you can upload a screenshot of the enemy base!">Base screenshoot <span class="badge"><span class="fa fa-info"></span></span></label>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
     <input name="ImageFile" type="file" id="uploadFile"/>
-    <label>or paste a image link</label>
-    <input class="form-control" type="text" name="screenshoot" value="<?php echo $rws2['call_base'];?>"/>
+    
     <div class="col-md-6">
         <div class="shortpreview" id="uploadImagePreview">
              <div id="imagePreview"></div>
@@ -75,9 +87,11 @@
     </div>
 </div>   
 <?php }?> 
-            	</div> 
-                </div>               
-            </div>  
+ <?php }?>            	</div>   
+                </div>
+               
+                               
+            </div>
             <div class="row">
             	<div class="col-md-12">
                     <div class="form-group float-label-control">
@@ -109,24 +123,28 @@
 	$sql_user2 = "SELECT * FROM user WHERE user_username='$current_user'";
 	$result_user2 = mysqli_query($database,$sql_user2) or die(mysqli_error($database));
 	while($user2 = mysqli_fetch_array($result_user2)){ 	 
-	  if ($user2['user_title'] >= 4){?>
+	  if ($user2['user_title'] >= 3){?>
     <input type="hidden" name="user_call" value="user_username<?php echo $enemy_attack;?>"/>
-    <label class="col-sm-2 control-label">Call it as</label>
-        <div class="col-sm-4">
+    <label class="col-sm-2 col-xs-4 control-label">Call it as</label>
+        <div class="col-sm-4 col-xs-6">
             <select class="form-control" name="user_callit">
                 <option value="<?php echo $_SESSION['user_username'];?>"><?php echo $_SESSION['user_username'];?></option>
-                <?php $sql_user = "SELECT * FROM user";
+                <option value="Other">Other</option>
+                <?php $sql_user = "SELECT * FROM user ORDER BY user_username ASC";
                 $result_user = mysqli_query($database,$sql_user) or die(mysqli_error($database));
                 while($user = mysqli_fetch_array($result_user)){ ?>   
                 <option value="<?php echo $user['user_username'];?>"><?php echo $user['user_username'];?></option>
                 <?php }?>
             </select>      
         </div>
-        <?php } }?>
-        <div class="col-md-6 text-right">
+        <?php }else{?>
+		 <input type="hidden" name="user_call" value="user_username<?php echo $enemy_attack;?>"/>
+         <input type="hidden" name="user_callit" value="<?php echo $_SESSION['user_username'];?>"/>        
+        <?php } }?> 
+	</div>   
+        <div class="col-md-12 text-right">
             <button class="btn btn-primary ladda-button" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" />Make the Call</button>
-        </div> 
-	</div>         
+        </div>          
     </div>
 </div>
 </form>

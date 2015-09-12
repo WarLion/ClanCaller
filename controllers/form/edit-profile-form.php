@@ -44,13 +44,21 @@
                     </a>
                 </div>
                 <div class="form-group float-label-control">
-                    <label for="">Password</label>
-                    <input type="password" class="form-control" placeholder="<?php echo $rws['user_password'];?>" name="user_password" value="<?php echo $rws['user_password'];?>">
-                </div>
-                <div class="form-group float-label-control">
                     <label for="">Email</label> 
                     <input type="text" class="form-control" placeholder="<?php echo $rws['user_email'];?>" name="user_email" value="<?php echo $rws['user_email'];?>">
                 </div>  
+                <div class="form-group float-label-control">
+<?php
+if ($rws['user_email_get'] == 2){
+	$check = 'checked';
+	}else{
+		$check = '';
+}?>
+<input type="hidden" name="user_email_get" value="1"/>
+<input type="checkbox" name="user_email_get" value="2" <?php echo $check;?>/> Do you want your email to be secret?
+
+ 
+                </div>                  
             </div>
         </div>
         <div class="tab-pane fade" id="personal">
@@ -58,7 +66,7 @@
                 <div class="form-group float-label-control">
                     <label for="">Favorite attack</label>
                         <div class="cc-selector-2">
-                        	<div class="col-sm-4 col-md-4">
+                        	<div class="col-xs-4 col-sm-4 col-md-4">
                             <input type="hidden" name="user_favattack" value="<?php echo $rws['user_favattack'];?>"/>
                             <?PHP if($rws['user_favattack'] == 'goho'){?>
                             <img src="imagenes/troops/attacks/goho.png" width="120" class="img-responsive"/>
@@ -67,7 +75,7 @@
                             <label class="favattack-cc goho" for="goho"></label>
                             <?php }?>
                             </div>
-                            <div class="col-sm-4 col-md-4">
+                            <div class="col-xs-4 col-sm-4 col-md-4">
                             <?PHP if($rws['user_favattack'] == 'gohoc'){?>
                             <img src="imagenes/troops/attacks/gohoc.png" width="120" class="img-responsive"/>
                             <?php }else{?>                            
@@ -75,7 +83,7 @@
                             <label class="favattack-cc gohoc"for="gohoc"></label>
                             <?php }?>
                             </div>
-                            <div class="col-sm-4 col-md-4">
+                            <div class="col-xs-4 col-sm-4 col-md-4">
                             <?PHP if($rws['user_favattack'] == 'golalo'){?>
                             <img src="imagenes/troops/attacks/golalo.png" width="120" class="img-responsive"/>
                             <?php }else{?>                            
@@ -84,7 +92,7 @@
                             <?php }?>
                             </div>
                             <div class="row"></div>
-                            <div class="col-sm-4 col-md-4">
+                            <div class="col-xs-4 col-sm-4 col-md-4">
                             <?PHP if($rws['user_favattack'] == 'gowipe'){?>
                             <img src="imagenes/troops/attacks/gowipe.png" width="120" class="img-responsive"/>
                             <?php }else{?>                            
@@ -92,7 +100,7 @@
                             <label class="favattack-cc gowipe" for="gowipe"></label>
                             <?php }?>
                             </div>
-                            <div class="col-sm-4 col-md-4">
+                            <div class="col-xs-4 col-sm-4 col-md-4">
                             <?PHP if($rws['user_favattack'] == 'gowiwi'){?>
                             <img src="imagenes/troops/attacks/gowiwi.png" width="120" class="img-responsive"/>
                             <?php }else{?>                            
@@ -100,7 +108,7 @@
                             <label class="favattack-cc gowiwi"for="gowiwi"></label>
                             <?php }?>
                             </div>
-                            <div class="col-sm-4 col-md-4">
+                            <div class="col-xs-4 col-sm-4 col-md-4">
                             <?PHP if($rws['user_favattack'] == 'lalonion'){?>
                             <img src="imagenes/troops/attacks/lalonion.png" width="120" class="img-responsive"/>
                             <?php }else{?>                            
@@ -110,11 +118,20 @@
                             </div>       
                         </div>             
                 </div>
-                <div class="row"></div>
+                <div class="row">
 				<div class="form-group float-label-control">
                     <label for="">Your TownHall Lv</label>
                         <div class="cc-selector-2">
-                        	<div class="col-sm-4 col-md-4">
+                        	<div class="col-xs-6 col-sm-3 col-md-3">
+                            <input type="hidden" name="user_th" value="<?php echo $rws['user_th'];?>"/>
+                          <?PHP if($rws['user_th'] == 'th7'){?>
+                          	<img src="imagenes/th/th7.png" width="100"class="img-responsive" />
+                            <?php }else{?>
+                            <input id="th7" type="radio" name="user_th" value="th7" style="display:none" />
+                            <label class="favattack-cc th7" for="th7"></label>
+                             <?php }?>
+                             </div>
+                        	<div class="col-xs-6 col-sm-3 col-md-3">
                             <input type="hidden" name="user_th" value="<?php echo $rws['user_th'];?>"/>
                           <?PHP if($rws['user_th'] == 'th8'){?>
                           	<img src="imagenes/th/th8.png" width="100"class="img-responsive" />
@@ -123,7 +140,7 @@
                             <label class="favattack-cc th8" for="th8"></label>
                              <?php }?>
                              </div>
-                             <div class="col-sm-4 col-md-4">
+                             <div class="col-xs-6 col-sm-3 col-md-3">
                           <?PHP if($rws['user_th'] == 'th9'){?>
                           	<img src="imagenes/th/th9.png" width="100" class="img-responsive"/>
                             <?php }else{?>
@@ -131,7 +148,7 @@
                             <label class="favattack-cc th9" for="th9"></label>
                              <?php }?>
                              </div>
-                             <div class="col-sm-4 col-md-4">
+                             <div class="col-xs-6 col-sm-3 col-md-3">
                           <?PHP if($rws['user_th'] == 'th10'){?>
                           	<img src="imagenes/th/th10.png" width="100" class="img-responsive" />
                             <?php }else{?>
@@ -142,6 +159,15 @@
                         </div>             
                 </div>                
             </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <div class="form-group float-label-control">
+            <label for="">You Slogan</label>
+                 <input type="text" class="form-control" placeholder="<?php echo $rws['user_slogan'];?>" name="user_slogan" value="<?php echo $rws['user_slogan'];?>"> 
+             <hr />           
+            </div> 
+            </div>
+                        
             <div class="col-md-6">
             	<div class="col-md-6">
                 <div class="form-group float-label-control">
@@ -171,10 +197,10 @@
                 <img src="imagenes/troops/troops/<?php echo $rws['user_favtroop'];?>.png" height="80"/>
                 </div>
 
-                <div class="col-md-12 column">
+                <div class="col-md-12 text-center">
                 <p class="text-center profile-title">Heroes Level</p>
                 <hr>
-                    <div class="col-md-4 text-center">
+                    <div class="col-md-6 col-sm-6 col-xs-6 text-center">
                    <input type="text" class="form-control" placeholder="<?php echo $rws['user_bk'];?>" name="user_bk" value="<?php echo $rws['user_bk'];?>"> 
 
                          <img src="imagenes/troops/heroes/king.png" width="100px" />                                   
@@ -182,12 +208,12 @@
                     <?php 
                     if($rws['user_th'] == 'th9' || $rws['user_th'] == 'th10'){
                     ?>
-                    <div class="col-md-4 text-center">
+                    <div class="col-md-6 col-sm-6 col-xs-6 text-center">
                          <input type="text" class="form-control" placeholder="<?php echo $rws['user_aq'];?>" name="user_aq" value="<?php echo $rws['user_aq'];?>"> 
                         <img src="imagenes/troops/heroes/queen.png" width="100px" />                                   
                     </div> 
                     <?php } else { ?>
-                    <div class="col-md-4 text-center">
+                    <div class="col-md-6 col-sm-6 col-xs-6 text-center">
                          <input type="text" class="form-control"  value="Disable" id="disabledTextInput">  
                         <img src="imagenes/troops/heroes/noaq.png" width="100px" />                                   
                     </div> 				                   <?php } ?>                                                                                                                                        
