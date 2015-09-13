@@ -40,11 +40,14 @@
 		$call_th=$_REQUEST['call_th'];
 		$user_favattack = $_REQUEST['user_favattack'];	
 		$user_call = $_REQUEST['user_call'];	
+		$current_username = $_REQUEST['current_username'];
         $sql3="UPDATE caller SET call_th='$call_th', call_base='$NewImageName',".$user_call."='$temp' WHERE war_enemynumber = '$war_enemynumber' && war_enemy = '$war_enemy'";
 		$sql4="INSERT INTO score SET war_enemy='$war_enemy',user_username='$temp', enemy_enemynumber = '$war_enemynumber', favattack = '$user_favattack'";
+		$sql5="INSERT INTO war_log SET log_clanname='$war_enemy',log_username='$temp', log_enemy_number = '$war_enemynumber', log_status = 'call', log_as_user ='$current_username'";
 			$r2 = mysqli_query($database,$sql3);
 			$r1 = mysqli_query($database,$sql4); 
-			$sqlResult = $r1 && $r2;
+			$r3 = mysqli_query($database,$sql5); 
+			$sqlResult = $r1 && $r2 && $r3;
 			if(!$sqlResult){
 				mysqli_rollback($database);
 				echo "error contact your admin";

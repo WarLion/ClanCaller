@@ -77,7 +77,8 @@
                    <input type="hidden" name="user_username" value="<?php echo $user_score;?>"/>
                    <input type="hidden" name="enemy_enemynumber" value="<?php echo $i;?>"/>
                    <input type="hidden" name="war_detail" value="<?php echo $current_war;?>"/>
-                   <input type="hidden" name="war_size" value="<?php echo $rws['war_size'];?>"/>                    
+                   <input type="hidden" name="war_size" value="<?php echo $rws['war_size'];?>"/>   
+                   <input type="hidden" name="current_username" value="<?php echo $current_user;?>"/>                   
                 </form>
                 <form action="components/update_score.php" method="POST">
                    <input type="image" src="imagenes/th/1.png" width="120" />
@@ -86,7 +87,8 @@
                    <input type="hidden" name="user_username" value="<?php echo $user_score;?>"/>
                    <input type="hidden" name="enemy_enemynumber" value="<?php echo $i;?>"/>
                    <input type="hidden" name="war_detail" value="<?php echo $current_war;?>"/>
-                   <input type="hidden" name="war_size" value="<?php echo $rws['war_size'];?>"/>                   
+                   <input type="hidden" name="war_size" value="<?php echo $rws['war_size'];?>"/>  
+                   <input type="hidden" name="current_username" value="<?php echo $current_user;?>"/>                   
                 </form>   
                 <form action="components/update_score.php" method="POST">
                    <input type="image" src="imagenes/th/2.png" width="120" />
@@ -95,7 +97,8 @@
                    <input type="hidden" name="user_username" value="<?php echo $user_score;?>"/>
                    <input type="hidden" name="enemy_enemynumber" value="<?php echo $i;?>"/>
                    <input type="hidden" name="war_detail" value="<?php echo $current_war;?>"/>
-                   <input type="hidden" name="war_size" value="<?php echo $rws['war_size'];?>"/>                   
+                   <input type="hidden" name="war_size" value="<?php echo $rws['war_size'];?>"/> 
+                   <input type="hidden" name="current_username" value="<?php echo $current_user;?>"/>                    
                 </form>
                 <form action="components/update_score.php" method="POST">
                    <input type="image" src="imagenes/th/3.png" width="120" />
@@ -104,7 +107,8 @@
                    <input type="hidden" name="user_username" value="<?php echo $user_score;?>"/>
                    <input type="hidden" name="enemy_enemynumber" value="<?php echo $i;?>"/>
                    <input type="hidden" name="war_detail" value="<?php echo $current_war;?>"/>
-                   <input type="hidden" name="war_size" value="<?php echo $rws['war_size'];?>"/>                   
+                   <input type="hidden" name="war_size" value="<?php echo $rws['war_size'];?>"/> 
+                   <input type="hidden" name="current_username" value="<?php echo $current_user;?>"/>                    
                 </form> 
                 </div>
         	</div>
@@ -136,6 +140,7 @@
                         <input type="hidden" name="war_size" value="<?php echo $war_size;?>"/>
                             <input type="hidden" name="user_call" value="user_username3"/>
                             <input type="hidden" name="user_callit" value="<?php echo $caller['user_username3'];?>"/>
+                            <input type="hidden" name="current_username" value="<?php echo $current_user;?>"/>  
                         <button class="btn btn-danger btn-xs" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" style="margin-top:10;" onclick="return confirm('Are you sure you want to delete the call on Enemy <?php echo $i; ?> by <?php echo $caller['user_username3'];?>?')"/>Delete</button>
                         </form>
                         <?php }?>

@@ -22,7 +22,7 @@
 					$score_total = $score['SUM(score)'] 
 					?> 
 
-    <h1 class="text-center profile-name" style="margin-top:35;">3star vs <?php echo $rws['war_enemy'];?></h1><br />
+    <h1 class="text-center profile-name" style="margin-top:35;"><?php echo $clananame;?> vs <?php echo $rws['war_enemy'];?></h1><br />
     <div class="col-md-12">
         <div class="col-md-3 col-xs-3 text-right">
 <?php $sql = "SELECT SUM(max_score) FROM (SELECT war_enemy, MAX(score) AS max_score FROM score WHERE war_enemy ='$enemy_name' GROUP BY enemy_enemynumber) AS total";

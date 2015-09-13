@@ -23,6 +23,7 @@
 <form action="components/callfirst.php?enemy=<?php echo $enemy_number;?>&war_details=<?php echo $rws['war_warid'];?>&war_size=<?php echo $rws['war_size'];?>" method="post" enctype="multipart/form-data" id="UploadForm">
 <input type="hidden" name="war_enemy" value="<?php echo $rws['war_enemy'];?>"/>
 <input type="hidden" name="call_th" value="<?php echo $caller_th['call_th'];?>"/>
+<input type="hidden" name="current_username" value="<?php echo $current_user;?>"/>
 <div class="container" style="padding-top:50px;">
     <h1 class="text-center profile-name" style="margin-top:35;">First Call Enemy <?php echo $enemy_number;?> <br /><small> <?php echo $rws['war_enemy'];?> </small></h1>
     <div class="col-md-12 panel" style="border-radius: 20px; margin-top:20px; margin-bottom:20px; padding-bottom:20px; padding-top:20px;"> 
@@ -139,7 +140,8 @@ $(document).ready(function(){
         </div>
         <?php }else{?>
 		 <input type="hidden" name="user_call" value="user_username<?php echo $enemy_attack;?>"/>
-         <input type="hidden" name="user_callit" value="<?php echo $_SESSION['user_username'];?>"/>        
+         <input type="hidden" name="user_callit" value="<?php echo $_SESSION['user_username'];?>"/> 
+         <input type="hidden" name="current_username" value="<?php echo $current_user;?>"/>         
         <?php } }?> 
 	</div>   
         <div class="col-md-12 text-right">

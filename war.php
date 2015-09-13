@@ -54,7 +54,10 @@ while($res = mysqli_fetch_array($result)){ ?>
     <?php }?>
 
     <div class="col-xs-12" style="margin-top:20px; margin-bottom:20px; padding-bottom:20px;">  
-        <div class="text-right"><a href="warstats.php?warid=<?php echo $current_war;?>" class="btn btn-success">view stats</a></div>
+        <div class="text-right">
+            <a href="warstats.php?warid=<?php echo $current_war;?>" class="btn btn-success">view stats</a> 
+           <a href="#logwar" data-toggle="modal" class="btn btn-info">War Log</a>
+        </div>
 				<?php $war_size = $_GET['war_size']; $loopvalue = $war_size; $i=1; while ($i <= $loopvalue) { ?>
                     
 <div class="col-md-12" style="border-radius: 20px; background-image:url(imagenes/back_panel.png); margin-top: 22px; padding-bottom:20px; padding-top:20px;">
@@ -98,7 +101,7 @@ while($res = mysqli_fetch_array($result)){ ?>
   </div>
 </div>      
             <?php } }?>
-<?php  } ?>            
+<?php  } ?>  
         </div>
     </div>
         <?php 
@@ -184,7 +187,8 @@ while($res = mysqli_fetch_array($result)){ ?>
                    <input type="hidden" name="user_username" value="<?php echo $user_score;?>"/>
                    <input type="hidden" name="enemy_enemynumber" value="<?php echo $i;?>"/>
                    <input type="hidden" name="war_detail" value="<?php echo $current_war;?>"/>
-                   <input type="hidden" name="war_size" value="<?php echo $rws['war_size'];?>"/>                    
+                   <input type="hidden" name="war_size" value="<?php echo $rws['war_size'];?>"/>
+                   <input type="hidden" name="current_username" value="<?php echo $current_user;?>"/>                    
                 </form>
                 <form action="components/update_score.php" method="POST">
                    <input type="image" src="imagenes/th/1.png" width="120" />
@@ -193,7 +197,8 @@ while($res = mysqli_fetch_array($result)){ ?>
                    <input type="hidden" name="user_username" value="<?php echo $user_score;?>"/>
                    <input type="hidden" name="enemy_enemynumber" value="<?php echo $i;?>"/>
                    <input type="hidden" name="war_detail" value="<?php echo $current_war;?>"/>
-                   <input type="hidden" name="war_size" value="<?php echo $rws['war_size'];?>"/>                   
+                   <input type="hidden" name="war_size" value="<?php echo $rws['war_size'];?>"/> 
+                   <input type="hidden" name="current_username" value="<?php echo $current_user;?>"/>                  
                 </form>   
                 <form action="components/update_score.php" method="POST">
                    <input type="image" src="imagenes/th/2.png" width="120" />
@@ -202,7 +207,8 @@ while($res = mysqli_fetch_array($result)){ ?>
                    <input type="hidden" name="user_username" value="<?php echo $user_score;?>"/>
                    <input type="hidden" name="enemy_enemynumber" value="<?php echo $i;?>"/>
                    <input type="hidden" name="war_detail" value="<?php echo $current_war;?>"/>
-                   <input type="hidden" name="war_size" value="<?php echo $rws['war_size'];?>"/>                   
+                   <input type="hidden" name="war_size" value="<?php echo $rws['war_size'];?>"/> 
+                   <input type="hidden" name="current_username" value="<?php echo $current_user;?>"/>                  
                 </form>
                 <form action="components/update_score.php" method="POST">
                    <input type="image" src="imagenes/th/3.png" width="120" />
@@ -211,7 +217,8 @@ while($res = mysqli_fetch_array($result)){ ?>
                    <input type="hidden" name="user_username" value="<?php echo $user_score;?>"/>
                    <input type="hidden" name="enemy_enemynumber" value="<?php echo $i;?>"/>
                    <input type="hidden" name="war_detail" value="<?php echo $current_war;?>"/>
-                   <input type="hidden" name="war_size" value="<?php echo $rws['war_size'];?>"/>                   
+                   <input type="hidden" name="war_size" value="<?php echo $rws['war_size'];?>"/> 
+                   <input type="hidden" name="current_username" value="<?php echo $current_user;?>"/>                  
                 </form> 
                 </div>
         	</div>
@@ -223,7 +230,48 @@ while($res = mysqli_fetch_array($result)){ ?>
     </div>
   </div>
 </div>
- <!--   popup -->                    
+ <!--   popup --> 
+ <!--------- war log modal --------------->
+     <div class="modal fade bs-example-modal-lg" id="logwar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img src="imagenes/close.png" width="20" height="20" /></button>
+        <p class="user_title" style="font-size:18; text-align: left;"><?php echo $enemy_name;?> War Log</p>
+      </div>
+      <div class="modal-body text-center" style="padding:30px;">
+<?php  
+		$caller_enemy = $rws['war_enemy'];
+		$sql_log = "SELECT * FROM war_log WHERE log_clanname = '$caller_enemy' order by log_id ASC";
+        $result_log = mysqli_query($database,$sql_log) or die(mysqli_error($database));
+        while($log = mysqli_fetch_array($result_log)){ ?>  
+         
+         
+         <?php 
+		 if($log['log_status'] != 'Score'){
+			 if($log['log_username'] != $log['log_as_user']){?>
+			<?php echo $log['log_as_user'];?> as <?php echo $log['log_username'];?>, <?php echo $log['log_status'];?> Enemy <?php echo $log['log_enemy_number'];?> <br />
+			<?php }else{?>
+			<?php echo $log['log_username'];?> <?php echo $log['log_status'];?> Enemy <?php echo $log['log_enemy_number'];?><br />
+			<?php }
+		 }else{
+		?>
+        <?php
+			 if($log['log_username'] != $log['log_as_user']){?>
+			<?php echo $log['log_as_user'];?> as <?php echo $log['log_username'];?>, add <?php echo $log['log_score'];?> stars to Enemy <?php echo $log['log_enemy_number'];?><br />
+			<?php }else{?>
+			<?php echo $log['log_as_user'];?> add <?php echo $log['log_score'];?> stars to Enemy <?php echo $log['log_enemy_number'];?><br />
+			<?php }  ?>      	
+        <?php }?>
+        
+        
+        
+<?php }?>        
+      </div>
+    </div>
+  </div>
+</div>  
+<!--------- end war log modal --------------->                             
                    <?php if ($score['plan'] == 'userfiles/screenshoots/noplan.jpg'){?>
                    		<?php if ($caller['user_username1'] == $current_user){?>
                      <li>
@@ -244,6 +292,7 @@ while($res = mysqli_fetch_array($result)){ ?>
                             <input type="hidden" name="war_warid" value="<?php echo $current_war;?>"/>
                             <input type="hidden" name="war_size" value="<?php echo $war_size;?>"/>
                             <input type="hidden" name="user_call" value="user_username1"/>
+                            <input type="hidden" name="current_username" value="<?php echo $current_user;?>"/>
                             <input type="hidden" name="user_callit" value="<?php echo $caller['user_username1'];?>"/>
                             <button class="btn btn-danger btn-xs" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" style="margin-top:10;" onclick="return confirm('Are you sure you want to delete the call on Enemy <?php echo $i; ?> by <?php echo $caller['user_username1'];?>?')"/>Delete</button>
                             </form>
