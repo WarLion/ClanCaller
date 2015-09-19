@@ -1,7 +1,7 @@
 <!-- second call ----->
     <?PhP if($caller['user_username2']){?>
     <div class="row visible-xs-block visible-sm-block"></div>
-	<div class="col-md-2 col-sm-6 col-xs-6 text-center" style="padding:20px;">
+	<div class="col-md-2 col-sm-4 col-xs-6 text-center" style="padding:20px;">
 		<?php  if ($caller['user_username3'] == NULL){
 			if ($caller['user_username2'] !== $current_user || $user['user_title'] >= 3){
 					if ($caller['user_username1'] !== $current_user || $user['user_title'] >= 3){
@@ -19,6 +19,20 @@
         while($score = mysqli_fetch_array($result_score)){ 
           ?>  
                     <li><a href="#myModal3<?php echo $i;?>" data-toggle="modal"><img src="imagenes/th/<?php echo $score['score'];?>.png" width="80" /></a></li>
+   <!-- timer -->
+           <?php 
+		   if ($score['score'] == 0){
+		   $log_user = $caller['user_username3'];
+		   $log_clan = $rws['war_enemy'];
+		$time = "SELECT log_end_time FROM war_log WHERE log_username='$log_user' && log_enemy_number = '".$i."' && log_clanname='$log_clan'";
+            $timer = mysqli_query($database,$time) or die(mysqli_error($database));
+            while($tim = mysqli_fetch_array($timer)){ 	   
+           
+		   
+		   ?>
+                    <div data-countdown="<?php echo $tim['log_end_time'];?>" style=" font-weight:bold; color:red;"></div>				
+					<?php } }?>  
+   <!-- end timer -->                      
           <!-- popup -->
 
 <div class="modal fade bs-example-modal-sm" id="myModal3<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -132,7 +146,7 @@
                             <button class="btn btn-success btn-xs" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" style="margin-top:10;" />Plan your attack!</button>
                             </form>                     </li>
                     <?php } }?>          
-    <?php }?>            
+    <?php }?>              
                     <?php if ($caller['user_username3'] == $current_user  || $user['user_title'] >= 4){?>
                     	<?PhP if($caller['user_username4'] == NULL  || $user['user_title'] >= 4){?>
                         <form action="components/delete-caller.php?e=<?php echo $i; ?>&e2=<?php echo $rws['war_enemy'];?>" method="post" enctype="multipart/form-data" id="UploadForm">

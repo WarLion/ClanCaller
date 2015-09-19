@@ -8,7 +8,7 @@
 						<h4 class="user_title" style="font-size:18;">UserName</h4>
                     </div>
                        <form action="components/update-user.php" method="post" enctype="multipart/form-data" id="UploadForm">               
-                    <input type="text" class="form-control" placeholder="<?php echo $rws['user_username'];?>" name="user_username" value="<?php echo $rws['user_username'];?>" style="margin:10px; width:95%;">
+                    <input type="text" class="form-control" placeholder="<?php echo $edit_user['user_username'];?>" name="user_username_user" value="<?php echo $edit_user['user_username'];?>" style="margin:10px; width:95%;">
               
                 </div>  
             </div>           
@@ -18,11 +18,10 @@
 					<h4 class="user_title" style="font-size:18;">Title</h4>
                     </div>
                     <div class="panel-body">
-            <input type="hidden" name="user_password" value="<?php echo $rws['user_password'];?>"/> 
-             <input type="hidden" name="user_email" value="<?php echo $rws['user_email'];?>"/>                     
+             <input type="hidden" name="user_email" value="<?php echo $edit_user['user_email'];?>"/>                     
                         <select name="user_title" class="form-control">
-                            <option value="<?php echo $rws['user_title'];?>"><?php 
-                        User_Title($rws['user_title']); ?></option>
+                            <option value="<?php echo $edit_user['user_title'];?>"><?php 
+                        User_Title($edit_user['user_title']); ?></option>
                         	<option value="0">Banned</option>
                             <option value="1">awaiting approval</option>
                             <option value="2">Member</option>
@@ -59,8 +58,8 @@
     <div class="submit">
         <center>
         <?php if($rws['user_title'] <= 4){?>
-            <input type="hidden" name="user_username" value="<?php echo $rws['user_username'];?>"/>       	
-            <button class="btn btn-primary ladda-button" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" />Edit <?php echo $rws['user_username'];?><?php echo $row['user_username'];?></button>
+            <input type="hidden" name="user_username" value="<?php echo $edit_user['user_username'];?>"/>       	
+            <button class="btn btn-primary ladda-button" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" />Edit <?php echo $edit_user['user_username'];?></button>
             </form> 
         </center> 
                  
@@ -68,9 +67,9 @@
 				 if($rws['user_title'] <= 5){?>
 <div class="text-right">                   
 <form id="form1" action="components/delete-user.php" method="post">
-<input type="hidden" name="user_username" value="<?php echo $rws['user_username'];?>"/>
-<button class="btn btn-danger btn-xs" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" onclick="return confirm('Are you sure?')">Delete <?php echo $rws['user_username'];?></button>
-    <input type="hidden" name="user_username" value="<?php echo $rws['user_username'];?>"/>
+<input type="hidden" name="user_username" value="<?php echo $edit_user['user_username'];?>"/>
+<button class="btn btn-danger btn-xs" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" onclick="return confirm('Are you sure you want to delete <?php echo $edit_user['user_username'];?>?')">Delete <?php echo $edit_user['user_username'];?></button>
+    <input type="hidden" name="user_username_user" value="<?php echo $edit_user['user_username'];?>"/>
 </form>  
 </div>          
             <?php } }?>

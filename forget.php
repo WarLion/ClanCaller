@@ -14,12 +14,12 @@
                     <div class="row">
                     <?php if ( isset($_GET['send'])) {?>
                       <div class="alert alert-success" role="alert">
-                           The password is been send to your email!<br><a href="index.php" class="btn btn-primary">Login page</a>
+                           A email was sent to you with your reset instruccion to get a new password.
                         </div>
                     <?php }?>  
                     <?php if ( isset($_GET['no_user'])) {?>
                       <div class="alert alert-danger" role="alert">
-                           We dont find your Username!
+                           We cant find your Username!
                         </div>
                     <?php }?>                                        
                         <div class="form-group">
@@ -29,7 +29,7 @@
                     </div>
                     
                       <div class="row centered">      
-                 <button type="submit" class="btn btn-primary ladda-button" data-style="zoom-in" value="Sign In" name="login_button">Request Password</button>
+                 <button type="submit" class="btn btn-primary ladda-button" data-style="zoom-in" value="Sign In" name="login_button">Reset Password</button>
                  </div>
                     </div>
                     

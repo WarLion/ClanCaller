@@ -2,7 +2,6 @@
 <?php include 'components/session-check.php' ?>
 <?php include 'controllers/base/head.php' ?>
 <?php include 'controllers/navigation/first-navigation.php' ?> 
-<?php include 'controllers/base/style.php' ?>
 <?php
 	include '_database/database.php';
 	$sql = "SELECT * FROM war_table LIMIT 1";

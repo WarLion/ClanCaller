@@ -1,4 +1,5 @@
 <?php 
+
    function title() {
       if (isset($title)) {
          if ($confirm == "1") {

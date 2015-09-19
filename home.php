@@ -2,29 +2,13 @@
 <?php include 'components/session-check.php' ?>
 <?php include 'controllers/base/head.php' ?>
 <?php include 'controllers/navigation/first-navigation.php' ?>  
-<?php include 'controllers/base/style.php' ?>
-<?php $current_user = $_SESSION['user_username'];?>   
 <div style="padding-bottom:30px;">	
     
     <div class="text-center logo"><a href="index.php"><img src="imagenes/logo.png" height="109" /></a></div>
-    
-    <!---------------------------- notifications examples------------------------->
     <div class="container">
-       <div id="cookies2" class="col-md-12">
- <div class="alert alert-info">
-    <a  class="close" id="hide2">&times;</a>
-    <strong>Bugs or suggestion?</strong> If you find a bug or have a suggestion to improve the site dont forget to send a message here <a href="bugs.php"><strong>Report abug</strong></a>.
-  </div>
-   </div>     
-    <div id="cookies" class="col-md-6">
- <div class="alert alert-warning">
-    <a  class="close" id="hide">&times;</a>
-    Remember to always check for target before attacking.
-  </div>
-   </div> 
-       <div id="cookies3" class="col-md-6">
+       <div id="cookies" class="col-md-12">
  <div class="alert alert-success">
-    <a  class="close" id="hide3">&times;</a>
+    <a  class="close" id="hide">&times;</a>
     <img src="http://saqibsomal.com/wp-content/uploads/2015/08/Android-Icon-2.png" width="30" /> test the Beta app for android <a href=""><strong>Get it now</strong></a>.
   </div>
    </div>  
@@ -37,34 +21,23 @@
         $("#cookies").slideUp(1000);
     }); // don't forget the semicolon here
 });
-  $(document).ready(function() {
-    $("#hide2").click(function() {
-        $("#cookies2").slideUp(1000);
-    }); // don't forget the semicolon here
-});
-  $(document).ready(function() {
-    $("#hide3").click(function() {
-        $("#cookies3").slideUp(1000);
-    }); // don't forget the semicolon here
-});
 </script>  
-<!---------------------------- end notifications  examples------------------------->
-
 <div class="container" style="padding-top:0px;">
 
 
 <!--- current war start--->
 <!-- war log start --->
 		<?php include '_database/database.php';
-        $current_user = $_SESSION['user_username'];
         $sql = "SELECT * FROM war_table order by war_warid DESC LIMIT 1";
         $result = mysqli_query($database,$sql) or die(mysqli_error($database));
         while($rws = mysqli_fetch_array($result)){ 
+					$war_stars = $rws['war_size'];
+					$war_stars_total = $war_stars * 3;			
 					$war_enemy = $rws['war_enemy'];
 					$sql_score = "SELECT SUM(score) FROM score WHERE war_enemy='$war_enemy'";
                     $result_score = mysqli_query($database,$sql_score) or die(mysqli_error($database));
                     while($score = mysqli_fetch_array($result_score)){ 
-					$score_total = $score['SUM(score)']
+					$score_total = $score['SUM(score)'];
         ?>
        <?php if($rws['war_enemy']){?> 
 <h2 class="text-center profile-text profile-profession"><strong>Active</strong> Current War</h2>
@@ -77,14 +50,16 @@
                 <div class="col-md-2 col-sm-2 col-xs-4 text-center">
 <?php $sql = "SELECT SUM(max_score) FROM (SELECT war_enemy, MAX(score) AS max_score FROM score WHERE war_enemy ='$war_enemy' GROUP BY enemy_enemynumber) AS total";
 $result = mysqli_query($database,$sql) or die(mysqli_error($database));
-while($res = mysqli_fetch_array($result)){  ?>    
+while($res = mysqli_fetch_array($result)){ 
+$porcent = ($res['SUM(max_score)'] * 100) / $war_stars_total; 
+ ?>    
 
                
                	 <strong><?php if($res['SUM(max_score)'] == NULL){ echo '0';}else { echo $res['SUM(max_score)'];}?> <span class="fa fa-star"></span></strong>
                 </div>
                 <div class="col-md-8 col-sm-8 col-xs-8">
                     <div class="progress">
-                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?php echo $res['SUM(max_score)'];?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $res['SUM(max_score)'];?>%">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?php echo $res['SUM(max_score)'];?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcent;?>%">
                         </div>
                     </div>
                 </div>  
@@ -111,11 +86,12 @@ while($res = mysqli_fetch_array($result)){  ?>
   <div id="collapseOne" class="collapse" >
 <!-- war log start --->
 		<?php include '_database/database.php';
-        $current_user = $_SESSION['user_username'];
          $sql = "SELECT * FROM war_table order by war_warid DESC LIMIT 1, 20";
         $result = mysqli_query($database,$sql) or die(mysqli_error($database));
         while($rws = mysqli_fetch_array($result)){ 
 		$war_enemy_name = $rws['war_enemy'];
+					$war_stars = $rws['war_size'];
+					$war_stars_total = $war_stars * 3;		
 		        ?>
 <?php if($rws['war_enemy']){?>
             <div class="panel-body" style=" border:solid #333 1px; background-color:#ccc;">
@@ -125,12 +101,14 @@ while($res = mysqli_fetch_array($result)){  ?>
                 <div class="col-md-2 col-sm-2 col-xs-12 text-center">
 <?php $sql2 = "SELECT SUM(max_score) FROM (SELECT war_enemy, MAX(score) AS max_score FROM score WHERE war_enemy ='$war_enemy_name' GROUP BY enemy_enemynumber) AS total";
 $result2 = mysqli_query($database,$sql2) or die(mysqli_error($database));
-while($res = mysqli_fetch_array($result2)){  ?>                  
+while($res = mysqli_fetch_array($result2)){  
+$porcent = ($res['SUM(max_score)'] * 100) / $war_stars_total; 
+?>                  
                	 <strong><?php if($res['SUM(max_score)'] == ''){ echo '0';}else { echo $res['SUM(max_score)'];}?> <span class="fa fa-star"></span></strong>
                 </div>
                 <div class="col-md-4 col-sm-5 col-xs-12">
                     <div class="progress">
-                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?php echo $res['SUM(max_score)'];?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $res['SUM(max_score)'];?>%">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?php echo $res['SUM(max_score)'];?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcent;?>%">
 <?php }?>                         
                         </div>
                     </div>

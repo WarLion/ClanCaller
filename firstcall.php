@@ -1,7 +1,6 @@
 <?php include 'components/authentication.php' ?>     
 <?php include 'components/session-check.php' ?>
 <?php include 'controllers/base/head.php' ?>
-<?php include 'controllers/base/style.php' ?>
 <?php include 'controllers/navigation/first-navigation.php' ?>   
 <?php
  $enemy_number = $_GET['e'];
@@ -14,6 +13,7 @@
 <form action="components/callfirst.php?enemy=<?php echo $enemy_number;?>&war_details=<?php echo $rws['war_warid'];?>&war_size=<?php echo $rws['war_size'];?>" method="post" enctype="multipart/form-data" id="UploadForm">
 <input type="hidden" name="war_enemy" value="<?php echo $rws['war_enemy'];?>"/>
 <input type="hidden" name="current_username" value="<?php echo $current_user;?>"/>
+<input type="hidden" name="caller_time" value="<?php echo $rws['caller_time'];?>"/>
 
 <div class="container" style="padding-top:50px;">
     <h1 class="text-center profile-name" style="margin-top:35;">First Call Enemy <?php echo $enemy_number;?> <br /><small> <?php echo $rws['war_enemy'];?> </small></h1>
@@ -102,7 +102,7 @@ $(document).ready(function(){
     <label class="col-sm-2 col-xs-4 control-label">Call it as</label>
         <div class="col-sm-4 col-xs-8">
             <select class="form-control" name="user_callit">
-                <option value="<?php echo $_SESSION['user_username'];?>"><?php echo $_SESSION['user_username'];?></option>
+                <option value="<?php echo $current_user;?>"><?php echo $current_user;?></option>
                 <option value="Other">Other</option>
                 <?php $sql_user = "SELECT * FROM user  ORDER BY user_username ASC";
                 $result_user = mysqli_query($database,$sql_user) or die(mysqli_error($database));
@@ -113,7 +113,7 @@ $(document).ready(function(){
         </div>
         <?php }else{?>
 		 <input type="hidden" name="user_call" value="user_username1"/>
-         <input type="hidden" name="user_callit" value="<?php echo $_SESSION['user_username'];?>"/>
+         <input type="hidden" name="user_callit" value="<?php echo $current_user;?>"/>
          <input type="hidden" name="current_username" value="<?php echo $current_user;?>"/>  
 		 <?php }}?>
 	</div>   

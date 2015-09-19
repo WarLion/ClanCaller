@@ -1,5 +1,5 @@
 <?php
-    $current_user = $_SESSION['user_username'];
+    include '_database/database.php';	
     $sql = "SELECT * FROM user WHERE user_username='$current_user'";
     $result = mysqli_query($database,$sql);
     while($row = mysqli_fetch_array($result,MYSQLI_BOTH)) {
@@ -32,7 +32,7 @@ function User_Title($title_user){
 	            <span class="icon-bar"></span>
 	            <span class="icon-bar"></span>
 	          </button>
-                <a class="navbar-brand" href="index.php"><img src="imagenes/logo.png" height="70" /></a>	        
+                <a class="navbar-brand" href="home.php"><img src="imagenes/logo.png" height="70" /></a>	        
             </div>
 	        <div class="navbar-collapse collapse" id="navbar-collapse1">
                 <form class="navbar-form navbar-left" role="search" method="post" autocomplete="off" action="search-result.php">
@@ -83,7 +83,7 @@ if ($title_user >= 4){
 		echo '<h5>Admin menu</h5>
 						  <li><a  href="edit-rules.php"><i class="fa fa-edit"></i> Edit Rules</a></li>
 						  <li><a  href="stats_global.php"><i class="fa fa-list-alt"></i> Clan Stats</a></li>
-						  <li><a  href="clan_info.php"><img src="imagenes/logo.png" height="20"> Clan Info</a></li>';
+						  <!--<li><a  href="clan_info.php"><img src="imagenes/logo.png" height="20"> Clan Info</a></li>-->';
 	}
  ?>
                             <li></li>

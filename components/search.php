@@ -1,7 +1,6 @@
 <?php
     require '../_database/database.php';
     session_start();
-    $current_user=$_SESSION['user_username'];
     if($_POST){
         $q=$_POST['searchword'];
         $sql_res=mysqli_query($database,"select * from user where user_username like '%$q%' order by user_id LIMIT 5");

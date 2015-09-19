@@ -14,7 +14,12 @@
 
 
         require '../_database/database.php';
-		$temp=$_SESSION['user_username'];
+if(isset($_COOKIE['user_username'])){
+	$temp = $_COOKIE['user_username'];
+}else if(isset($_SESSION['user_username'])){
+		$temp = $_SESSION['user_username'];
+}
+
 		$enemy = $_REQUEST['enemy'];  
 		$enemyname = $_REQUEST['enemyname']; 
 		$war_size = $_REQUEST['war_size'];

@@ -10,7 +10,7 @@
             <div class="col-md-6">
                 <div class="form-group float-label-control">                      
                     <label for="">First Name</label>
-                    <input type="text" class="form-control" placeholder="<?php echo $rws['user_firstname'];?>" name="user_firstname" value="<?php echo $rws['user_firstname'];?>">
+                    <input type="text" class="form-control" placeholder="<?php echo $rws['user_firstname'];?>" name="user_firstname" value="<?php echo $rws['user_firstname'];?>" >
                 </div>
                 <div class="form-group float-label-control">
                     <label for="">Avatar</label>
@@ -33,15 +33,13 @@
             </div>  
             <div class="col-md-6">
                 <label for="">Username</label>
+                <div class="form-group float-label-control">      
+                                <input type="text" class="form-control" placeholder="<?php echo $rws['user_username'];?>" name="user_username" value="<?php echo $rws['user_username'];?>" disabled>
+                </div>
                 <div class="form-group float-label-control">
-                    <a href="profile.php?user_username=<?php echo $rws['user_username'];?>">        
-                        <div class="input-group">
-                            <span class="input-group-addon">Profile</span>
-                            <fieldset disabled> 
-                                <input type="text" class="form-control" placeholder="<?php echo $rws['user_username'];?>" name="user_username" value="<?php echo $rws['user_username'];?>" id="disabledTextInput" autocomplete="off">
-                            </fieldset>  
-                        </div>
-                    </a>
+                    <label for="">Password</label>
+                    <input type="hidden" name="user_password" value="<?php echo $rws['user_password'];?>">
+                    <input type="password" class="form-control"  name="user_password" value="">
                 </div>
                 <div class="form-group float-label-control">
                     <label for="">Email</label> 
@@ -162,7 +160,7 @@ if ($rws['user_email_get'] == 2){
             </div>
             <div class="col-md-6 text-center">
                 <div class="form-group float-label-control">
-            <label for="">You Slogan</label>
+            <label for="">Your Slogan</label>
                  <input type="text" class="form-control" placeholder="<?php echo $rws['user_slogan'];?>" name="user_slogan" value="<?php echo $rws['user_slogan'];?>"> 
              <hr />           
             </div> 

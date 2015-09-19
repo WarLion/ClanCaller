@@ -1,7 +1,6 @@
 <?php include 'components/authentication.php' ?>     
 <?php include 'components/session-check.php' ?>
 <?php include 'controllers/base/head.php' ?>
-<?php include 'controllers/base/style.php' ?>
 <?php include 'controllers/navigation/first-navigation.php' ?>   
                                                      <div class="container" style="padding-top:50px;">
                                                        <h2 class="text-center profile-text profile-name">Members List</h2>
@@ -10,7 +9,6 @@
                                                               <div class="row clearfix">
 <?php
     include '_database/database.php';
-    $current_user = $_SESSION['user_username'];
     $sql = "SELECT * FROM user WHERE user_title = 1 order by user_username asc";
     $result = mysqli_query($database,$sql) or die(mysqli_error($database));
     while($rws = mysqli_fetch_array($result)){ 
@@ -57,7 +55,6 @@ if ($admin_leader < 5){?>
                                                               <div class="row clearfix">
 <?php
     include '_database/database.php';
-    $current_user = $_SESSION['user_username'];
     $sql = "SELECT * FROM user WHERE user_title <> 1 order by user_username asc";
     $result = mysqli_query($database,$sql) or die(mysqli_error($database));
     while($rws = mysqli_fetch_array($result)){ 

@@ -7,15 +7,6 @@
     $rws = mysqli_fetch_array($result);       
 ?>
 
-        <style>
-            body{
-                background: linear-gradient( rgba(44, 38, 38, 0.45), rgba(0, 0, 0, 0.45) ), url("./imagenes/profileback.jpg")!important;
-                background-repeat: no-repeat !important;
-                background-attachment: fixed !important;
-                background-size: cover !important;
-                margin-top: 0px;
-                display: block;
-            }
-        </style>
+
 
 

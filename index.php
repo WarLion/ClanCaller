@@ -23,13 +23,17 @@
                         <label for="inputPassword">Password</label>
                         <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
                         </div>
+                          <div class="checkbox">
+                          <input name="rememberme" type="hidden" value="off">
+                              <input type="checkbox" name="rememberme" value="on"> Remember me
+                          </div>                         
                     <button type="submit" class="btn btn btn-primary ladda-button" data-style="zoom-in" value="Sign In" name="login_button">
                     Log In  
                     </button>
                     <a href="register.php" class="btn btn btn-primary ladda-button">Sign Up</a>
                     <div class="row  centered">
                     <br />
-                   <!--- coming soon ----- <h6><a href="forget.php">Forgot password?</a></h6>-->
+                    <h6><a href="forget.php">Forgot password?</a></h6>
                     </div>                    
                     </form>
                     </div>

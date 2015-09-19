@@ -19,6 +19,20 @@
         while($score = mysqli_fetch_array($result_score)){ 
           ?>  
                     <li><a href="#myModal4<?php echo $i;?>" data-toggle="modal"><img src="imagenes/th/<?php echo $score['score'];?>.png" width="80" /></a></li>
+   <!-- timer -->
+           <?php 
+		   if ($score['score'] == 0){
+		   $log_user = $caller['user_username4'];
+		   $log_clan = $rws['war_enemy'];
+		$time = "SELECT log_end_time FROM war_log WHERE log_username='$log_user' && log_enemy_number = '".$i."' && log_clanname='$log_clan'";
+            $timer = mysqli_query($database,$time) or die(mysqli_error($database));
+            while($tim = mysqli_fetch_array($timer)){ 	   
+           
+		   
+		   ?>
+                    <div data-countdown="<?php echo $tim['log_end_time'];?>" style=" font-weight:bold; color:red;"></div>				
+					<?php } }?>  
+   <!-- end timer -->                      
           <!-- popup -->
 
 <div class="modal fade bs-example-modal-sm" id="myModal4<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -133,6 +147,7 @@
                     <?php } }?>          
     <?php }?>            
                     <?php if ($caller['user_username4'] == $current_user  || $user['user_title'] >= 4){?>
+                    <?PhP if($caller['user_username5'] == NULL  || $user['user_title'] >= 4){?>
                         <form action="components/delete-caller.php?e=<?php echo $i; ?>&e2=<?php echo $rws['war_enemy'];?>" method="post" enctype="multipart/form-data" id="UploadForm">
                         <input type="hidden" name="war_warid" value="<?php echo $current_war;?>"/>
                         <input type="hidden" name="war_size" value="<?php echo $war_size;?>"/>
@@ -141,6 +156,7 @@
                             <input type="hidden" name="current_username" value="<?php echo $current_user;?>"/>  
                         <button class="btn btn-danger btn-xs" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" style="margin-top:10;" onclick="return confirm('Are you sure you want to delete the call on Enemy <?php echo $i; ?> by <?php echo $caller['user_username4'];?>?')"/>Delete</button>
                         </form>
+                    <?php }?>
                     <?php }?>
             </ul> 
         <?php  }?>   

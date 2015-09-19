@@ -11,7 +11,7 @@
 
                 <form action="components/update-rules.php" method="post" enctype="multipart/form-data" id="UploadForm">                    
                     <input type="hidden"  name="rules_id" value="<?php echo $rules['rules_id'];?>"/>
-    			   <input type="hidden" name="user_username" value="<?php echo $_SESSION['user_username'];?>"/>
+    			   <input type="hidden" name="user_username" value="<?php echo $current_user;?>"/>
                     <textarea id="post_body" class="form-control" name="rule_txt" value="" style="height:300px;"><?php echo $rules['rule_txt'];?></textarea>
 
                
