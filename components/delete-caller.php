@@ -12,14 +12,14 @@
 		$current_username = $_REQUEST['current_username'];
 		date_default_timezone_set("America/Mexico_City");
 		$time = date('h:i:s');
-        $sql3="UPDATE caller SET ".$user_call."='' WHERE war_enemy='$war_enemy' AND war_enemynumber = '$war_enemynumber'";
-		$sql4="DELETE FROM score WHERE user_username='$temp' AND enemy_enemynumber = '$war_enemynumber'";
-		$sql5="INSERT INTO war_log SET log_clanname='$war_enemy',log_username='$temp', log_enemy_number = '$war_enemynumber', log_status = 'delete', log_as_user ='$current_username',log_time='$time'";
-		$sql6="UPDATE war_log SET log_end_time='' WHERE log_username='$temp' AND log_clanname='$war_enemy' AND  log_enemy_number = '$war_enemynumber'";
-			$r2 = mysqli_query($database,$sql3);
-			$r1 = mysqli_query($database,$sql4); 
-			$r3 = mysqli_query($database,$sql5); 
-			$r4 = mysqli_query($database,$sql6); 
+        $sql1="UPDATE caller SET ".$user_call."='' WHERE war_enemy='$war_enemy' AND war_enemynumber = '$war_enemynumber'";
+		$sql2="DELETE FROM score WHERE user_username='$temp' AND enemy_enemynumber = '$war_enemynumber'";
+		$sql3="INSERT INTO war_log SET log_clanname='$war_enemy',log_username='$temp', log_enemy_number = '$war_enemynumber', log_status = 'delete', log_as_user ='$current_username',log_time='$time'";
+		$sql4="UPDATE war_log SET log_end_time='', status ='0' WHERE log_username='$temp' AND log_clanname='$war_enemy' AND  log_enemy_number = '$war_enemynumber'";
+			$r1 = mysqli_query($database,$sql1);
+			$r2 = mysqli_query($database,$sql2); 
+			$r3 = mysqli_query($database,$sql3); 
+			$r4 = mysqli_query($database,$sql4); 
 			$sqlResult = $r1 && $r2 && $r3 && $r4;
 			if(!$sqlResult){
 				//sqlResult = 0, thus there was a problem

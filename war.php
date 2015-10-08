@@ -1,13 +1,13 @@
-<?php include 'components/authentication.php' ?> 
+<?php include 'components/authentication.php' ?>     
 <?php include 'components/session-check.php' ?>
 <?php include 'controllers/base/head.php' ?>
+<?php include 'controllers/navigation/first-navigation.php' ?>
 <script type="text/javascript" src="assets/js/countdown/jquery.countdown.min.js"></script>
 <script type="text/javascript">
 $(window).load(function() {
 	$(".loader").fadeOut("slow");
 })
 </script>
-<?php include 'controllers/navigation/first-navigation.php' ?> 
 <div class="loader"></div>
 <div class="container">				
 				<?php
@@ -26,8 +26,7 @@ $(window).load(function() {
 					$war_stars_total = $war_stars * 3;
 					$enemy_name = $rws['war_enemy'];
 					$start_war = $rws['war_time'];
-					
-					$sql_call = "SELECT user_username1, user_username2, user_username3, user_username4, count(*) as 'calls' FROM caller WHERE war_enemy = '$enemy_name' && user_username1 = '$current_user' || user_username2 = '$current_user' || user_username3 = '$current_user' || user_username4 = '$current_user' ORDER BY caller_id";
+					$sql_call = "SELECT count(*) as 'calls' FROM war_log WHERE log_username = '$current_user' && status='1' && log_clanname = '$enemy_name' && log_status ='call'";
 					$result_call = mysqli_query($database,$sql_call) or die(mysqli_error($database));
 					while($calls = mysqli_fetch_array($result_call)){ 
 						 
@@ -39,8 +38,10 @@ $(window).load(function() {
 					?> 
 
     <h1 class="text-center profile-name" style="margin-top:35;"><?php echo $clananame;?> vs <?php echo $rws['war_enemy'];?></h1><br />
+    <span id="clock"></span>
+     <span><h4 class="text-center profile-name" style="color:#a45f49;">Calls Remaining<br /><span style="color:#febd0c;"><?php if($calls['calls']>=2){ echo '0';}elseif($calls['calls']==1){ echo '1';}elseif($calls['calls']==0){ echo '2';}?></span></h4></span>
     <div class="col-md-12">
-        <div class="col-md-3 col-xs-3 text-right">
+        <div class="col-md-3 col-sm-3 col-xs-3 text-right">
 <?php $sql = "SELECT SUM(max_score) FROM (SELECT war_enemy, MAX(score) AS max_score FROM score WHERE war_enemy ='$enemy_name' GROUP BY enemy_enemynumber) AS total";
 $result = mysqli_query($database,$sql) or die(mysqli_error($database));
 while($res = mysqli_fetch_array($result)){ 
@@ -49,19 +50,18 @@ $porcent = ($res['SUM(max_score)'] * 100) / $war_stars_total;
 ?>         
         <span class="text-center profile-name" style="font-size:22;"><?php if($res['SUM(max_score)'] == ''){ echo '0';}else { echo $res['SUM(max_score)'];}?></span><br />
         </div>
-        <div class="col-md-6 col-xs-6">
+        <div class="col-md-6 col-sm-6 col-xs-6">
                 <div class="progress">
               <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?php echo $res['SUM(max_score)'];?>" aria-valuemin="0" aria-valuemax="<?php echo $war_stars_total;?>" style="width: <?php echo $porcent;?>%">
               </div>
             </div>
 <?php }?>              
         </div>
-        <div class="col-md-3 col-xs-3">
+        <div class="col-md-3 col-sm-3 col-xs-3">
         <span class="text-center profile-name" style="font-size:22;"><?php echo $war_stars_total;?></span><br />
         </div>      
     </div>   
     <?php }?>
-    <span id="clock"></span>
     <script>
  $('#clock').countdown('<?php echo $start_war;?>') 
  .on('update.countdown', function(event) {
@@ -142,7 +142,7 @@ $porcent = ($res['SUM(max_score)'] * 100) / $war_stars_total;
             <?php } }else{?>
                 <ul class="list-unstyled">
                     <li><p class="user_title" style="text-align: center; font-size:11;">Called by</p></li>
-                    <li><p  class="user_title" style="text-align: center; font-size:18; color:#FFF;"><?php echo $caller['user_username1'];?></p></li>
+                    <li><p  class="user_title" style="text-align: center; font-size:15; color:#FFF;"><?php echo $caller['user_username1'];?></p></li>
          <?php    
 		 $user_score = $caller['user_username1'];       
          $sql_score = "SELECT * FROM score WHERE war_enemy = '$caller_enemy' && enemy_enemynumber = '$war_enemynumber' && user_username ='$user_score' LIMIT 1";
@@ -150,13 +150,13 @@ $porcent = ($res['SUM(max_score)'] * 100) / $war_stars_total;
         while($score = mysqli_fetch_array($result_score)){ 
           ?>          
           
-                    <li><a href="#myModal<?php echo $i;?>" data-toggle="modal"><img src="imagenes/th/<?php echo $score['score'];?>.png" width="80" /></a></li>
+                    <li><a href="#myModal_call_1_enemy_<?php echo $i;?>" data-toggle="modal"><img src="imagenes/th/<?php if($score['score'] == NULL){echo 'none';}else{ echo $score['score'];}?>.png" width="80" /></a></li>
    <!-- timer -->
            <?php 
-		    if ($score['score'] == 0){
+		    if ($score['score'] == NULL){
 		   $log_user = $caller['user_username1'];
 		   $log_clan = $rws['war_enemy'];
-		$time = "SELECT log_end_time FROM war_log WHERE log_username='$log_user' && log_enemy_number = '".$i."' && log_clanname='$log_clan'";
+		$time = "SELECT log_end_time FROM war_log WHERE log_username='$log_user' && log_enemy_number = '".$i."' && log_clanname='$log_clan' order by log_end_time DESC LIMIT 1 ";
             $timer = mysqli_query($database,$time) or die(mysqli_error($database));
             while($tim = mysqli_fetch_array($timer)){ 	   
            
@@ -167,7 +167,7 @@ $porcent = ($res['SUM(max_score)'] * 100) / $war_stars_total;
    <!-- end timer -->                                   
           <!-- popup -->
 
-<div class="modal fade bs-example-modal-sm" id="myModal<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade bs-example-modal-sm" id="myModal_call_1_enemy_<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -340,9 +340,18 @@ $porcent = ($res['SUM(max_score)'] * 100) / $war_stars_total;
 	<!-- end caller 1-->
 
     <!-- second call ----->
-    <?PhP if($caller['user_username1']){?>
-		<?php include 'war2.php' ?>
-	<?php }?>
+    <?PhP if($caller['user_username1']){
+   
+		 $user_score = $caller['user_username1'];       
+         $sql_score = "SELECT score FROM score WHERE war_enemy = '$caller_enemy' && enemy_enemynumber = '$war_enemynumber' && user_username ='$user_score' LIMIT 1";
+        $result_score = mysqli_query($database,$sql_score) or die(mysqli_error($database));
+        while($score = mysqli_fetch_array($result_score)){ 
+		 if($score['score'] != NULL){
+                       
+		 include 'war2.php'; 
+         } 
+		 } 
+	 }?>
      <!---end second call ---> 
 	<!-- third call ----->
     <?PhP if($caller['user_username2']){?>
@@ -382,9 +391,14 @@ $porcent = ($res['SUM(max_score)'] * 100) / $war_stars_total;
      var $this = $(this),
          finalDate = $(this).data('countdown');
      $this.countdown(finalDate, function (event) {
-         $this.html(event.strftime('%H:%M:%S'));
-     })
+   var format = '%H:%M:%S';
+    if(event.offset.days > 0) {
+     format = '%-d day%!d ' + format;
+   }
+   $(this).html(event.strftime(format));
+ })
          .on('finish.countdown', function (event) {
+			 $(this).html('Expired!');
 
      });
      if ($(this).text() == '00:00:00') $(this).html('Expired!');

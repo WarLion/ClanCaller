@@ -1,0 +1,28 @@
+<?php
+    ini_set("display_errors",1);
+    session_start();
+    if(isset($_POST)){
+		require '../_database/database.php';
+        $stars = $_POST['stars'];
+	    $enemy = $_POST['war_enemy'];
+	    $user = $_POST['user_username'];
+	    $enemy_number = $_POST['enemy_enemynumber'];
+		$current_username = $_REQUEST['current_username'];
+		date_default_timezone_set("America/Mexico_City");		
+		$time = date('h:i:s');	
+		$current_time = date('Y-m-d H:i:s');
+        $sql3="UPDATE score SET score='$stars' WHERE war_enemy='$enemy' && user_username = '$user' && enemy_enemynumber = '$enemy_number'";
+		$sql5="INSERT INTO war_log SET log_clanname='$enemy',log_username='$user', log_score='$stars', log_enemy_number = '$enemy_number', log_status = 'Score', log_as_user ='$current_username',log_time='$time', log_end_time='$current_time'";
+			$r1 = mysqli_query($database,$sql3);
+			$r2 = mysqli_query($database,$sql5); 
+			$sqlResult = $r1 && $r2;
+			if(!$sqlResult){
+				mysqli_rollback($database);
+				echo "error contact your admin";
+			}else{
+				mysqli_commit($database);
+            header('location:../home.php');
+			}
+			mysqli_close($database);	
+	}
+?>

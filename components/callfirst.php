@@ -6,10 +6,7 @@
         require '../_database/database.php';
         $Destination = '../userfiles/screenshoots';
 		$war_enemy=$_REQUEST['war_enemy'];
-		$war_enemynumber = $_GET['enemy'];
-		$sql = "SELECT * FROM war_table WHERE war_enemy='$war_enemy'";
-                    $result = mysqli_query($database,$sql) or die(mysqli_error($database));
-                    while($rws = mysqli_fetch_array($result)){ 		
+		$war_enemynumber = $_GET['enemy'];	
 		$screenshoot = $_REQUEST['screenshoot'];;
         if(!isset($_FILES['ImageFile']) || !is_uploaded_file($_FILES['ImageFile']['tmp_name'])){
             $NewImageName= $screenshoot;
@@ -46,14 +43,14 @@
 		$current_username = $_REQUEST['current_username'];
 		date_default_timezone_set("America/Mexico_City");	
 		$hour = $_REQUEST['caller_time'];
+		$war_time = $_REQUEST['war_time'];
 		$time = date('h:i:s');
-		if ($user_call == 'user_username1'){
-			if(date("Y-m-d H:i:s") >= $rws['war_time']){
+		if ($user_call == 'user_username1'){				
+			if(date("Y-m-d H:i:s") >= $war_time){
 				$end_time = date('Y-m-d H:i:s', strtotime('+ '.$hour.' hours'));
 			}else{
-				$s = $rws['war_time'];
-				$end_time = date( "Y-m-d H:i:s", strtotime( "$s + ".$hour." hours" ) );				
-			}
+				$end_time = date( "Y-m-d H:i:s", strtotime( "$war_time + ".$hour." hours" ) );				
+			} 
 		}else{
 			$end_time = date('Y-m-d H:i:s', strtotime('+ '.$hour.' hours'));
 		}
@@ -88,7 +85,7 @@
 			
 			
 			
-					}
+					
            
     }    
 ?>

@@ -400,9 +400,9 @@
 	\---------------------------------------------------------------------*/
 	STEP_ROOTUSER => array(
 		'title'        =>  'Create Administrator Account',
-		'enabled'      =>  true,
+		'enabled'      =>  false,
 		'encryptdata'  =>  false,
-		'maskname'     =>  'user.sql',
+		'maskname'     =>  '',
 		),
 
 

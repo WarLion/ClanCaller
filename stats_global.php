@@ -33,9 +33,10 @@
 		$x = $rws['Cnt'];
 		$y = $rws2['Cnt2'];
 		$porcent = ($y * 100) / $x;
+		$format = number_format($porcent, 2, '.', '');
 		?> 
       <div style="border:solid #999 1px;; padding:3px;">     	  
-    <strong><?php echo $string_troop;?></strong> <span class="badge" style="background-color:#090;"><?php echo $porcent;?> %</span></a><br /> 
+    <strong><?php echo $string_troop;?></strong> <span class="badge" style="background-color:#090;"><?php echo $format;?> %</span></a><br /> 
     <?php echo $rws['Cnt'];?> - Attacks, <?php echo $rws2['Cnt2'];?> - 3 <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><br />
 	</div>
     
@@ -63,9 +64,10 @@
 		$x2 = $rws3['Cnt3'];
 		$y2 = $rws4['Cnt4'];
 		$porcent = ($y2 * 100) / $x2;
+		$format = number_format($porcent, 2, '.', '');
 		?> 
       <div style="border:solid #999 1px;; padding:3px;">     	  
-    <strong><?php echo $string_troop;?></strong> <span class="badge" style="background-color:#A9C120;">-<?php echo $porcent;?> %</span></a><br /> 
+    <strong><?php echo $string_troop;?></strong> <span class="badge" style="background-color:#A9C120;">-<?php echo $format;?> %</span></a><br /> 
     <?php echo $rws3['Cnt3'];?> - Attacks, <?php echo $rws4['Cnt4'];?> - 2 <span class="fa fa-star"></span><span class="fa fa-star"></span><br />
 	</div>
     
@@ -94,9 +96,10 @@
 		$x2 = $rws3['Cnt3'];
 		$y2 = $rws4['Cnt4'];
 		$porcent = ($y2 * 100) / $x2;
+		$format = number_format($porcent, 2, '.', '');
 		?> 
       <div style="border:solid #999 1px;; padding:3px;">     	  
-    <strong><?php echo $string_troop;?></strong> <span class="badge" style="background-color:orange;">-<?php echo $porcent;?> %</span></a><br /> 
+    <strong><?php echo $string_troop;?></strong> <span class="badge" style="background-color:orange;">-<?php echo $format;?> %</span></a><br /> 
     <?php echo $rws3['Cnt3'];?> - Attacks, <?php echo $rws4['Cnt4'];?> - 1 <span class="fa fa-star"></span><br />
 	</div>
     
@@ -124,9 +127,10 @@
 		$x2 = $rws3['Cnt3'];
 		$y2 = $rws4['Cnt4'];
 		$porcent = ($y2 * 100) / $x2;
+		$format = number_format($porcent, 2, '.', '');
 		?> 
       <div style="border:solid #999 1px;; padding:3px;">     	  
-    <strong><?php echo $string_troop;?></strong> <span class="badge" style="background-color:red;">-<?php echo $porcent;?> %</span></a><br /> 
+    <strong><?php echo $string_troop;?></strong> <span class="badge" style="background-color:red;">-<?php echo $format;?> %</span></a><br /> 
     <?php echo $rws3['Cnt3'];?> - Attacks, <?php echo $rws4['Cnt4'];?> - Fail<br />
 	</div>
     
@@ -146,7 +150,7 @@
 <div class="col-md-3"  style="padding:20;">
     <label>3 Stars</label>
 <?php
-    $members_sql = "SELECT user_username, count(*) as 'memcount' FROM score GROUP BY user_username ORDER BY memcount ASC";
+    $members_sql = "SELECT user_username, count(*) as 'memcount' FROM score GROUP BY user_username ORDER BY user_username ASC";
     $result_members = mysqli_query($database,$members_sql) or die(mysqli_error($database));
     while($mem = mysqli_fetch_array($result_members)){ 
 	 $member = $mem['user_username']; 
@@ -156,9 +160,10 @@
 		$a = $mem['memcount'];
 		$b = $mem2['memcount2'];
 		$porcent_mem = ($b * 100) / $a;
+		$format = number_format($porcent_mem, 2, '.', '');
 		?> 
       <div style="border:solid #999 1px;; padding:3px;">     	  
-   <a href="profile.php?user_username=<?php echo $mem['user_username'];?>" class="list-group-item"> <strong><?php echo $mem['user_username'];?></strong> <span class="badge" style="background-color:#090;"><?php echo $porcent_mem;?> %</span><br /> 
+   <a href="profile.php?user_username=<?php echo $mem['user_username'];?>" class="list-group-item"> <strong><?php echo $mem['user_username'];?></strong> <span class="badge" style="background-color:#090;"><?php echo $format;?> %</span><br /> 
     <?php echo $mem['memcount'];?> - Attacks, <?php echo $mem2['memcount2'];?> - 3 <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><br /></a>
 	</div>
     
@@ -167,7 +172,7 @@
 <div class="col-md-3"  style="padding:20;">
     <label>2 stars</label>
 <?php
-    $members_sql = "SELECT user_username, count(*) as 'memcount' FROM score GROUP BY user_username ORDER BY memcount ASC";
+    $members_sql = "SELECT user_username, count(*) as 'memcount' FROM score GROUP BY user_username ORDER BY user_username ASC";
     $result_members = mysqli_query($database,$members_sql) or die(mysqli_error($database));
     while($mem = mysqli_fetch_array($result_members)){ 
 	 $member = $mem['user_username']; 
@@ -177,9 +182,10 @@
 		$a = $mem['memcount'];
 		$b = $mem2['memcount2'];
 		$porcent_mem = ($b * 100) / $a;
+		$format = number_format($porcent_mem, 2, '.', '');
 		?> 
       <div style="border:solid #999 1px;; padding:3px;">     	  
-    <a href="profile.php?user_username=<?php echo $mem['user_username'];?>" class="list-group-item"><strong><?php echo $mem['user_username'];?></strong> <span class="badge" style="background-color:#A9C120;"><?php echo $porcent_mem;?> %</span><br /> 
+    <a href="profile.php?user_username=<?php echo $mem['user_username'];?>" class="list-group-item"><strong><?php echo $mem['user_username'];?></strong> <span class="badge" style="background-color:#A9C120;"><?php echo $format;?> %</span><br /> 
     <?php echo $mem['memcount'];?> - Attacks, <?php echo $mem2['memcount2'];?> - 2 <span class="fa fa-star"></span><span class="fa fa-star"></span></span><br /></a>
 	</div>
     
@@ -188,7 +194,7 @@
 <div class="col-md-3"  style="padding:20;">
     <label>1 Star</label>
 <?php
-    $members_sql = "SELECT user_username, count(*) as 'memcount' FROM score GROUP BY user_username ORDER BY memcount ASC";
+    $members_sql = "SELECT user_username, count(*) as 'memcount' FROM score GROUP BY user_username ORDER BY user_username ASC";
     $result_members = mysqli_query($database,$members_sql) or die(mysqli_error($database));
     while($mem = mysqli_fetch_array($result_members)){ 
 	 $member = $mem['user_username']; 
@@ -198,9 +204,10 @@
 		$a = $mem['memcount'];
 		$b = $mem2['memcount2'];
 		$porcent_mem = ($b * 100) / $a;
+		$format = number_format($porcent_mem, 2, '.', '');
 		?> 
       <div style="border:solid #999 1px;; padding:3px;">     	  
-    <a href="profile.php?user_username=<?php echo $mem['user_username'];?>" class="list-group-item"><strong><?php echo $mem['user_username'];?></strong> <span class="badge" style="background-color:orange;"><?php echo $porcent_mem;?> %</span><br /> 
+    <a href="profile.php?user_username=<?php echo $mem['user_username'];?>" class="list-group-item"><strong><?php echo $mem['user_username'];?></strong> <span class="badge" style="background-color:orange;"><?php echo $format;?> %</span><br /> 
     <?php echo $mem['memcount'];?> - Attacks, <?php echo $mem2['memcount2'];?> - 1 <span class="fa fa-star"></span></span><br /></a>
 	</div>
     
@@ -209,7 +216,7 @@
 <div class="col-md-3"  style="padding:20;">
     <label>Fails</label>
 <?php
-    $members_sql = "SELECT user_username, count(*) as 'memcount' FROM score GROUP BY user_username ORDER BY memcount ASC";
+    $members_sql = "SELECT user_username, count(*) as 'memcount' FROM score GROUP BY user_username ORDER BY user_username ASC";
     $result_members = mysqli_query($database,$members_sql) or die(mysqli_error($database));
     while($mem = mysqli_fetch_array($result_members)){ 
 	 $member = $mem['user_username']; 
@@ -219,9 +226,10 @@
 		$a = $mem['memcount'];
 		$b = $mem2['memcount2'];
 		$porcent_mem = ($b * 100) / $a;
+		$format = number_format($porcent_mem, 2, '.', '');
 		?> 
       <div style="border:solid #999 1px;; padding:3px;">     	  
-   <a href="profile.php?user_username=<?php echo $mem['user_username'];?>" class="list-group-item"> <strong><?php echo $mem['user_username'];?></strong> <span class="badge" style="background-color:red;"><?php echo $porcent_mem;?> %</span><br /> 
+   <a href="profile.php?user_username=<?php echo $mem['user_username'];?>" class="list-group-item"> <strong><?php echo $mem['user_username'];?></strong> <span class="badge" style="background-color:red;"><?php echo $format;?> %</span><br /> 
     <?php echo $mem['memcount'];?> - Attacks, <?php echo $mem2['memcount2'];?> - Fail</span><br /></a>
 	</div>
     

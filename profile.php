@@ -138,7 +138,7 @@ if ($rws['user_email']){
                                          
                                          
                                         <div class="col-md-2 col-sm-2 col-xs-6 text-center">
-                                        <img src="imagenes/th/<?php echo $userlog['score'];?>.png" width="80px" />  
+                                        <img src="imagenes/th/<?php if($userlog['score'] == NULL){echo 'none';}else{ echo $userlog['score'];}?>.png" width="80px" />  
                                         </div> 
                                         <div class="col-md-2 col-sm-2 col-xs-6 text-center" >
                                         <?php if($userlog['favattack'] == ''){?>
@@ -155,7 +155,7 @@ if ($rws['user_email']){
                                   <?php if($rws['user_title'] >= 2){ ?>
                              
                                     <div class="col-md-12  col-sm-12">
-                                    <p class="profile-details"><i class="fa fa-plus"></i>Last war</p> 
+                                    <p class="profile-details"><i class="fa fa-plus"></i>Ended wars</p> 
                                       
                                         
 <?php                                        
@@ -165,7 +165,7 @@ if ($rws['user_email']){
 	$enemy_name = $warlog3['war_enemy'];
 	
 ?>	   								<div class="col-md-3 col-sm-3 col-xs-12 text-center">
-                                     <p><?php echo $enemy_name;?>-Ended</p><hr class="visible-xs" /> 
+                                     <p><?php echo $enemy_name;?></p><hr class="visible-xs" /> 
                                      </div>                                                 
 <?Php
    $sql3 = "SELECT * FROM score WHERE user_username='$user_name' AND war_enemy = '$enemy_name' ORDER BY score_id LIMIT 2";
@@ -173,7 +173,7 @@ if ($rws['user_email']){
     while($userlog3 = mysqli_fetch_array($result3,MYSQLI_BOTH)) {
   ?>            
                                         <div class="col-md-2 col-sm-2 col-xs-6 text-center">
-                                        <img src="imagenes/th/<?php echo $userlog3['score'];?>.png" width="80px" />  
+                                        <img src="imagenes/th/<?php if($userlog3['score'] == NULL){echo 'none';}else{ echo $userlog3['score'];}?>.png" width="80px" />  
                                         </div> 
                                         <div class="col-md-2 col-sm-2 col-xs-6 text-center" >
                                         <?php if($userlog3['favattack'] == ''){?>
@@ -198,7 +198,7 @@ if ($rws['user_email']){
 	$enemy_name = $warlog3['war_enemy'];
 	
 ?>	   								<div class="col-md-3 col-sm-3 col-xs-12 text-center">
-                                     <p><?php echo $enemy_name;?>-Ended</p><hr class="visible-xs" /> 
+                                     <p><?php echo $enemy_name;?></p><hr class="visible-xs" /> 
                                      </div>                                                 
 <?Php
    $sql3 = "SELECT * FROM score WHERE user_username='$user_name' AND war_enemy = '$enemy_name' ORDER BY score_id LIMIT 2";
@@ -206,7 +206,7 @@ if ($rws['user_email']){
     while($userlog3 = mysqli_fetch_array($result3,MYSQLI_BOTH)) {
   ?>            
                                         <div class="col-md-2 col-sm-2 col-xs-6 text-center">
-                                        <img src="imagenes/th/<?php echo $userlog3['score'];?>.png" width="80px" />  
+                                        <img src="imagenes/th/<?php if($userlog3['score'] == NULL){echo 'none';}else{ echo $userlog3['score'];}?>.png" width="80px" />  
                                         </div> 
                                         <div class="col-md-2 col-sm-2 col-xs-6 text-center" >
                                         <?php if($userlog3['favattack'] == ''){?>
@@ -231,7 +231,7 @@ if ($rws['user_email']){
 	$enemy_name = $warlog3['war_enemy'];
 	
 ?>	   								<div class="col-md-3 col-sm-3 col-xs-12 text-center">
-                                     <p><?php echo $enemy_name;?>-Ended</p><hr class="visible-xs" /> 
+                                     <p><?php echo $enemy_name;?></p><hr class="visible-xs" /> 
                                      </div>                                                 
 <?Php
    $sql3 = "SELECT * FROM score WHERE user_username='$user_name' AND war_enemy = '$enemy_name' ORDER BY score_id LIMIT 2";
@@ -239,7 +239,7 @@ if ($rws['user_email']){
     while($userlog3 = mysqli_fetch_array($result3,MYSQLI_BOTH)) {
   ?>            
                                         <div class="col-md-2 col-sm-2 col-xs-6 text-center">
-                                        <img src="imagenes/th/<?php echo $userlog3['score'];?>.png" width="80px" />  
+                                        <img src="imagenes/th/<?php if($userlog3['score'] == NULL){echo 'none';}else{ echo $userlog3['score'];}?>.png" width="80px" />  
                                         </div> 
                                         <div class="col-md-2 col-sm-2 col-xs-6 text-center" >
                                         <?php if($userlog3['favattack'] == ''){?>

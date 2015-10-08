@@ -1,2 +1,0 @@
-INSERT INTO `user` (`user_id`, `user_email`, `user_password`, `user_firstname`, `user_avatar`, `user_username`, `user_favtroop`, `user_favattack`, `user_th`, `user_bk`, `user_aq`, `user_title`, `user_active`) VALUES
-(NULL, '{admin_email}', '{admin_password}', '{admin_realname}', 'default.jpg', '{admin_username}', '', '', '', '', '', '6', '2');

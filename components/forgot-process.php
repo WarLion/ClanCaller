@@ -16,9 +16,9 @@
 	$user_username = $user['user_username'];
 				
 	$to = $user_email;
-	$email_body = 'Hi, <br/> <br/>Your UserName is '.$user['user_username'].' <br><br>Click here to reset your password <a href="'.$url.'/reset.php?encrypt='.$encrypt.'&action=reset">'.$url.'/reset.php?encrypt='.$encrypt.'&action=reset</a><br>if the link dont work please copy and paste it in your browser';
-	$headers = "From: $from\n"; 
-	$headers .= "Reply-To: $from";
+	$email_body = 'Hi '.$user['user_username'].', <br/> <br/>Your UserName is '.$user['user_username'].' <br><br>Click here to reset your password <a href="'.$url.'/reset.php?encrypt='.$encrypt.'&action=reset">'.$url.'/reset.php?encrypt='.$encrypt.'&action=reset</a><br>if the link dont work please copy and paste it in your browser';
+	$headers = "From:". $admin_email."\n"; 
+	$headers .= "Reply-To:". $admin_email;
 	$headers .= "MIME-Version: 1.0\r\n";
 	$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 	mail($to,$email_subject,$email_body,$headers);	

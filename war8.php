@@ -15,17 +15,17 @@
         <?php } } } }}}}} }else{?>
             <ul class="list-unstyled">
                     <li><p class="user_title" style="text-align: center; font-size:11;">Called by</p></li>
-                    <li><p  class="user_title" style="text-align: center; font-size:18; color:#FFF;"><?php echo $caller['user_username8'];?></p></li>
+                    <li><p  class="user_title" style="text-align: center; font-size:15; color:#FFF;"><?php echo $caller['user_username8'];?></p></li>
          <?php    
 		 $user_score = $caller['user_username8']; // change for # of calls      
          $sql_score = "SELECT * FROM score WHERE war_enemy = '$caller_enemy' && enemy_enemynumber = '$war_enemynumber' && user_username ='$user_score' LIMIT 1";
         $result_score = mysqli_query($database,$sql_score) or die(mysqli_error($database));
         while($score = mysqli_fetch_array($result_score)){ 
           ?>  
-                    <li><a href="#myModal4<?php echo $i;?>" data-toggle="modal"><img src="imagenes/th/<?php echo $score['score'];?>.png" width="80" /></a></li>
+                    <li><a href="#myModal_call_8_enemy_<?php echo $i;?>" data-toggle="modal"><img src="imagenes/th/<?php if($score['score'] == NULL){echo 'none';}else{ echo $score['score'];}?>.png" width="80" /></a></li>
           <!-- popup -->
 
-<div class="modal fade bs-example-modal-sm" id="myModal4<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade bs-example-modal-sm" id="myModal_call_8_enemy_<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

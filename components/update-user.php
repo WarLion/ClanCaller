@@ -10,20 +10,19 @@
 	mysqli_query($database,$sql3)or die(mysqli_error($database));
 	require '../assets/mail/PHPMailerAutoload.php';
     $message = file_get_contents('../assets/mail/edit_user.html'); 
-	$message = str_replace('%user_username%', $user_username, $message);
+	$message = str_replace('%user_username%', $user_username_user, $message);
 	$message = str_replace('%url%', $url, $message);
-	$message = str_replace('%clananame%', $clananame, $message);
     $mail = new PHPMailer(); $mail->IsSMTP(); // This is the SMTP mail server 
 
 $mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = '';  // Specify main and backup SMTP servers
+$mail->Host = $email_Host;  // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = '';                 // SMTP username
-$mail->Password = '';                           // SMTP password
-$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 465;                                    // TCP port to connect to
+$mail->Username = $email_Username;                 // SMTP username
+$mail->Password = $email_Password;                           // SMTP password
+$mail->SMTPSecure = $email_SMTPSecure;                            // Enable TLS encryption, `ssl` also accepted
+$mail->Port = $email_Port;                                     // TCP port to connect to
 
-$mail->From = $from;
+$mail->From = $admin_email;
 $mail->FromName = $clananame.' WebPage';
 $mail->addAddress($user_email);     // Add a recipient
 $mail->Subject = $clananame.' ClanWars Information';

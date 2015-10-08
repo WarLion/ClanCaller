@@ -1,5 +1,4 @@
-<?php
-    session_start();
+<?php session_start();
 function loggedin()
 {
 	if (isset($_SESSION['user_username']) || isset($_COOKIE['user_username']))

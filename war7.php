@@ -14,20 +14,20 @@
         <?php } } } }}}} }else{?>
             <ul class="list-unstyled">
                     <li><p class="user_title" style="text-align: center; font-size:11;">Called by</p></li>
-                    <li><p  class="user_title" style="text-align: center; font-size:18; color:#FFF;"><?php echo $caller['user_username7'];?></p></li>
+                    <li><p  class="user_title" style="text-align: center; font-size:15; color:#FFF;"><?php echo $caller['user_username7'];?></p></li>
          <?php    
 		 $user_score = $caller['user_username7']; // change for # of calls      
          $sql_score = "SELECT * FROM score WHERE war_enemy = '$caller_enemy' && enemy_enemynumber = '$war_enemynumber' && user_username ='$user_score' LIMIT 1";
         $result_score = mysqli_query($database,$sql_score) or die(mysqli_error($database));
         while($score = mysqli_fetch_array($result_score)){ 
           ?>  
-                    <li><a href="#myModal4<?php echo $i;?>" data-toggle="modal"><img src="imagenes/th/<?php echo $score['score'];?>.png" width="80" /></a></li>
+                    <li><a href="#myModal_call_7_enemy_<?php echo $i;?>" data-toggle="modal"><img src="imagenes/th/<?php if($score['score'] == NULL){echo 'none';}else{ echo $score['score'];}?>.png" width="80" /></a></li>
    <!-- timer -->
            <?php 
-		   if ($score['score'] == 0){
+		   if ($score['score'] == NULL){
 		   $log_user = $caller['user_username7'];
 		   $log_clan = $rws['war_enemy'];
-		$time = "SELECT log_end_time FROM war_log WHERE log_username='$log_user' && log_enemy_number = '".$i."' && log_clanname='$log_clan'";
+		$time = "SELECT log_end_time FROM war_log WHERE log_username='$log_user' && log_enemy_number = '".$i."' && log_clanname='$log_clan' order by log_end_time DESC LIMIT 1 ";
             $timer = mysqli_query($database,$time) or die(mysqli_error($database));
             while($tim = mysqli_fetch_array($timer)){ 	   
            
@@ -38,7 +38,7 @@
    <!-- end timer -->                      
           <!-- popup -->
 
-<div class="modal fade bs-example-modal-sm" id="myModal4<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade bs-example-modal-sm" id="myModal_call_7_enemy_<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

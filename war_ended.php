@@ -1,7 +1,7 @@
-<?php include 'components/authentication.php' ?> 
+<?php include 'components/authentication.php' ?>
 <?php include 'components/session-check.php' ?>
 <?php include 'controllers/base/head.php' ?>
-<?php include 'controllers/navigation/first-navigation.php' ?> 
+<?php include 'controllers/navigation/first-navigation.php' ?>
 <div class="container">				
 				<?php
                     include '_database/database.php';
@@ -99,7 +99,7 @@ while($res = mysqli_fetch_array($result)){ ?>
         while($score = mysqli_fetch_array($result_score)){ 
           ?>          
           
-                    <li><a href="#myModal<?php echo $i;?>" data-toggle="modal"><img src="imagenes/th/<?php echo $score['score'];?>.png" width="80" /></a></li>
+                    <li><a href="#myModal<?php echo $i;?>" data-toggle="modal"><img src="imagenes/th/<?php if($score['score'] == NULL){echo 'none';}else{ echo $score['score'];}?>.png" width="80" /></a></li>
           <!-- popup -->
 
 <div class="modal fade bs-example-modal-sm" id="myModal<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -173,7 +173,7 @@ while($res = mysqli_fetch_array($result)){ ?>
         $result_score = mysqli_query($database,$sql_score) or die(mysqli_error($database));
         while($score = mysqli_fetch_array($result_score)){ 
           ?>  
-                    <li><a href="#myModal2<?php echo $i;?>" data-toggle="modal"><img src="imagenes/th/<?php echo $score['score'];?>.png" width="80" /></a></li>
+                    <li><a href="#myModal2<?php echo $i;?>" data-toggle="modal"><img src="imagenes/th/<?php if($score['score'] == NULL){echo 'none';}else{ echo $score['score'];}?>.png" width="80" /></a></li>
           <!-- popup -->
 
 <div class="modal fade bs-example-modal-sm" id="myModal2<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -284,7 +284,7 @@ while($res = mysqli_fetch_array($result)){ ?>
         $result_score = mysqli_query($database,$sql_score) or die(mysqli_error($database));
         while($score = mysqli_fetch_array($result_score)){ 
           ?>  
-                    <li><a href="#myModal3<?php echo $i;?>" data-toggle="modal"><img src="imagenes/th/<?php echo $score['score'];?>.png" width="80" /></a></li>
+                    <li><a href="#myModal3<?php echo $i;?>" data-toggle="modal"><img src="imagenes/th/<?php if($score['score'] == NULL){echo 'none';}else{ echo $score['score'];}?>.png" width="80" /></a></li>
           <!-- popup -->
 
 <div class="modal fade bs-example-modal-sm" id="myModal3<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -369,7 +369,7 @@ while($res = mysqli_fetch_array($result)){ ?>
         $result_score = mysqli_query($database,$sql_score) or die(mysqli_error($database));
         while($score = mysqli_fetch_array($result_score)){ 
           ?>  
-                    <li><a href="#myModal4<?php echo $i;?>" data-toggle="modal"><img src="imagenes/th/<?php echo $score['score'];?>.png" width="80" /></a></li>
+                    <li><a href="#myModal4<?php echo $i;?>" data-toggle="modal"><img src="imagenes/th/<?php if($score['score'] == NULL){echo 'none';}else{ echo $score['score'];}?>.png" width="80" /></a></li>
           <!-- popup -->
 
 <div class="modal fade bs-example-modal-sm" id="myModal4<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

@@ -19,20 +19,18 @@
 	$message = str_replace('%firstname%', $user_firstname, $message);
     $message = str_replace('%username%', $user_username, $message); 
 	$message = str_replace('%th%', $user_th, $message);
-	$message = str_replace('%clananame%', $clananame, $message);
-	$message = str_replace('%url%', $url, $message);	
     $mail = new PHPMailer(); $mail->IsSMTP(); // This is the SMTP mail server 
 
 $mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = '';  // Specify main and backup SMTP servers
+$mail->Host = $email_Host;  // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = '';                 // SMTP username
-$mail->Password = '';                           // SMTP password
-$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 465;                                    // TCP port to connect to
+$mail->Username = $email_Username;                 // SMTP username
+$mail->Password = $email_Password;                           // SMTP password
+$mail->SMTPSecure = $email_SMTPSecure;                            // Enable TLS encryption, `ssl` also accepted
+$mail->Port = $email_Port;                                    // TCP port to connect to
 
-$mail->From = $from;
-$mail->FromName = $clananame.'WebPage';
+$mail->From = $admin_email;
+$mail->FromName = $clananame.' WebPage';
 $mail->addAddress($user_email, $user_firstname);     // Add a recipient
 $mail->Subject = 'Your Account Information';
 $mail->MsgHTML($message);
@@ -44,23 +42,21 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 }else{
 $mail2 = new PHPMailer(); 
 $mail2->IsSMTP(); // This is the SMTP mail server
-$mail2->Host = '';  // Specify main and backup SMTP servers
+$mail2->Host = $email_Host;  // Specify main and backup SMTP servers
 $mail2->SMTPAuth = true;                               // Enable SMTP authentication
-$mail2->Username = '';                 // SMTP username
-$mail2->Password = '';                           // SMTP password
-$mail2->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-$mail2->Port = 465;                                    // TCP port to connect to
+$mail2->Username = $email_Username;                 // SMTP username
+$mail2->Password = $email_Password;                           // SMTP password
+$mail2->SMTPSecure = $email_SMTPSecure;                            // Enable TLS encryption, `ssl` also accepted
+$mail2->Port = $email_Port;                                       // TCP port to connect to
 
-$mail2->From = $from;
-$mail2->FromName = $clananame.'WebPage';
-$mail2->addAddress($from, 'Admin '.$clananame);     // Add a recipient
-//$mail2->addBCC(''); //add a copy to member 
+$mail2->From = $admin_email;
+$mail2->FromName = $clananame.' WebPage';
+$mail2->addAddress($admin_email, 'WarLion');     // Add a recipient
+//$mail2->addBCC('');  //copy to
 
 $mail2->Subject = 'A new Member just register on the '.$clananame.' ClanWars page ';
 $mail2->Body    = 'A new member is waiting approval to get access to the page <br> Username: <strong>'.$user_username.'</strong><br>
 <a href="'.$url.'profile.php?user_username='.$user_username.'">Edit Profile</a>';
-$mail2->AltBody = 'A new member is waiting approval to get access to the page\n 
-Username: '.$user_username;
 $mail2->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 if($mail2->send()) {

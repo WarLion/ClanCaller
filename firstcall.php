@@ -7,14 +7,14 @@
                     include '_database/database.php';
                     $sql = "SELECT * FROM war_table ORDER BY war_warid DESC LIMIT 1";
                     $result = mysqli_query($database,$sql) or die(mysqli_error($database));
-                    while($rws = mysqli_fetch_array($result)){  					
+                    while($rws = mysqli_fetch_array($result)){  							
 					?> 
 
 <form action="components/callfirst.php?enemy=<?php echo $enemy_number;?>&war_details=<?php echo $rws['war_warid'];?>&war_size=<?php echo $rws['war_size'];?>" method="post" enctype="multipart/form-data" id="UploadForm">
 <input type="hidden" name="war_enemy" value="<?php echo $rws['war_enemy'];?>"/>
 <input type="hidden" name="current_username" value="<?php echo $current_user;?>"/>
 <input type="hidden" name="caller_time" value="<?php echo $rws['caller_time'];?>"/>
-
+<input type="hidden" name="war_time" value="<?php echo $rws['war_time'];?>"/>
 <div class="container" style="padding-top:50px;">
     <h1 class="text-center profile-name" style="margin-top:35;">First Call Enemy <?php echo $enemy_number;?> <br /><small> <?php echo $rws['war_enemy'];?> </small></h1>
     <div class="col-md-12 panel" style="border-radius: 20px; margin-top:20px; margin-bottom:20px; padding-bottom:20px; padding-top:20px;"> 
@@ -101,7 +101,7 @@ $(document).ready(function(){
     <input type="hidden" name="user_call" value="user_username1"/>
     <label class="col-sm-2 col-xs-4 control-label">Call it as</label>
         <div class="col-sm-4 col-xs-8">
-            <select class="form-control" name="user_callit">
+            <select id="user_callithide" class="form-control" name="user_callit">
                 <option value="<?php echo $current_user;?>"><?php echo $current_user;?></option>
                 <option value="Other">Other</option>
                 <?php $sql_user = "SELECT * FROM user  ORDER BY user_username ASC";
@@ -110,7 +110,7 @@ $(document).ready(function(){
                 <option value="<?php echo $user['user_username'];?>"><?php echo $user['user_username'];?></option>
                 <?php }?>
             </select>      
-        </div>
+        </div>                 
         <?php }else{?>
 		 <input type="hidden" name="user_call" value="user_username1"/>
          <input type="hidden" name="user_callit" value="<?php echo $current_user;?>"/>
@@ -123,4 +123,4 @@ $(document).ready(function(){
 </div>
 </div>
 </form>
-<?php  }?>
+<?php  } ?>

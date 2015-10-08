@@ -23,55 +23,59 @@ function User_Title($title_user){
 	}
 		
 ?>
-    <!-- Navbar1 -->
-	    <div id="navigation" class="navbar navbar-default navbar-fixed-top">
-	      <div class="fluid-container">
-	        <div class="navbar-header" style=" margin-right:10px;">
-	          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1">
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	          </button>
-                <a class="navbar-brand" href="home.php"><img src="imagenes/logo.png" height="70" /></a>	        
-            </div>
-	        <div class="navbar-collapse collapse" id="navbar-collapse1">
+<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.php">
+      	 <img alt="Brand" src="./imagenes/logo.png" height="50">
+      </a>
+    </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <ul class="nav navbar-nav navbar-right">
                 <form class="navbar-form navbar-left" role="search" method="post" autocomplete="off" action="search-result.php">
                     <div class="form-group">
                         <input type="text" class="search form-control" id="searchbox" placeholder="Search for People" name="search-form"/><br />
                         <div id="display"></div>
 				    </div> 
 				</form>
-                <ul class="nav navbar-nav navbar-right"  style=" margin-right:20px;">
-                    <li class="dropdown" >
-                    
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $row['user_username'];?><strong class="caret"></strong> </a>
-                                                <ul class="dropdown-menu">
-                                                <h5>User Menu</h5>
-                            <li>
-                                <a href="profile.php?user_username=<?php echo $row['user_username'];?>"><i class="fa fa-edit"></i>Profile</a>
-                                <a href="edit-profile.php"><i class="fa fa-edit"></i> Edit Profile</a>
-                                  <li><a href="components/logout.php"><i class="fa fa-mail-reply"></i> Logout</a></li>
-                            </li>
-                        </ul>
-                    </li>	
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-bars" style="font-size: 1.27em; right:"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                        	<h5>Menu</h5>
+      <li><a href="#"><span class="fa fa-eye" style="color:#093;"></span></a></li>   
+        <li class="dropdown">
+        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user"></span> <?php echo $current_user;?> <span class="caret"></span></a>
+		  <ul class="dropdown-menu">
+            <li><a href="profile.php?user_username=<?php echo $row['user_username'];?>"><span class="fa fa-user"></span> Profile</a></li>
+            <!--<li><a href="#"><span class="fa fa-envelope"></span> PM</a></li>-->
+            <li><a href="edit-profile.php"><span class="fa fa-cog"></span> User Setings</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#"><span class="fa fa-fire"></span> Your Base</a></li>
+            <li><a href="#"><span class="fa fa-leaf"></span> Your Weight</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="components/logout.php"><span class="fa fa-minus"></span> Log out</a></li>
+            
+          </ul>            
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="rules.php"><span class="fa fa-envelope"></span> Rules</a></li>   
 <?php
  $sql = "SELECT * FROM war_table ORDER BY war_warid DESC LIMIT 1";
     $result = mysqli_query($database,$sql) or die(mysqli_error($database));
     while($rws = mysqli_fetch_array($result,MYSQLI_BOTH)) {
-?>		
-                            
-                            <li><a href="war.php?war_details=<?php echo $rws['war_warid'];?>&war_size=<?php echo $rws['war_size']; ?>"><i class="fa fa-star"></i> Current war</a></li>
-<?php } ?>                            
-                            <li><a href="rules.php"><i class="fa fa-list"> </i>Rules</a></li>
-                            <li><a href="all-users.php"><i class="fa fa-th-large"></i> View all users</a></li>
-                            <li><a href="bugs.php"><i class="fa fa-th-large"></i>Report a bug</a></li>
-                         <?php  
+?>	                   
+            <li><a href="war.php?war_details=<?php echo $rws['war_warid'];?>&war_size=<?php echo $rws['war_size']; ?>"><span class="fa fa-user"></span> Current War</a></li>
+ <?php }?>
+           <!-- <li><a href="#"><span class="fa fa-th-list"></span> War Log</a></li>-->
+           <li><a href="all-users.php"><i class="fa fa-th-large"></i> View all users</a></li>
+            <li><a href="stats_global.php"><span class="fa fa-list-alt"></span> Statistics</a></li>  
+<?php  
 $title_user = $row['user_title'];
 if ($title_user >= 3){?>
 <li><a href="createwar.php"><i class="fa fa-star"></i> Create War</a></li>
@@ -79,22 +83,16 @@ if ($title_user >= 3){?>
                             
                          <?php  
 $title_user = $row['user_title'];
-if ($title_user >= 4){
-		echo '<h5>Admin menu</h5>
-						  <li><a  href="edit-rules.php"><i class="fa fa-edit"></i> Edit Rules</a></li>
-						  <li><a  href="stats_global.php"><i class="fa fa-list-alt"></i> Clan Stats</a></li>
-						  <!--<li><a  href="clan_info.php"><img src="imagenes/logo.png" height="20"> Clan Info</a></li>-->';
-	}
- ?>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                    </li>	
-                </ul>    
-	        </div><!--/.nav-collapse -->
-	      </div>
-	    </div>
-      <!-- ./Navbar1 -->
+if ($title_user >= 4){ ?>  
+            <li role="separator" class="divider"></li>    
+            <li><a href="admin.php"><span class="fa fa-cog"></span> Clan Settings</a></li>
+          <?php }?>  
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 <?php
     }
 ?>
